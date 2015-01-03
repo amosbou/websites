@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from hotels.models import Hotel, Room
+from hotels.models import Hotel, Room, Calendar
 
 
 def index(request):
@@ -26,9 +26,16 @@ def accommodation(request, hotel_id):
 
 
 def room_details(request, hotel_id, room_id):
+    hotels_list = Hotel.objects.order_by('hotel_city')
+    hotel = Hotel.objects.get(pk=hotel_id)
     try:
         room = Room.objects.get(pk=room_id)
     except Hotel.DoesNotExist:
         raise Http404
-    context = {'room': room}
+    context = {'hotels_list': hotels_list, 'hotel': hotel, 'room': room}
     return render(request, 'hotels/room-detail.html', context)
+
+
+
+
+

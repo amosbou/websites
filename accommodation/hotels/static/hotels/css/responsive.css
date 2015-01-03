@@ -7,16 +7,16 @@
 	.booking-inline .booking-form {max-width: none;}
 	.check-availability .booking-inline {margin-top:0;}
 	/* Accomodation */
-	.md-accomodation-available .grid_9 {float: none; margin-top: 20px; display: block; width: auto;}
-	.md-accomodation-available > .align-center {
+	.md-accommodation-available .grid_9 {float: none; margin-top: 20px; display: block; width: auto;}
+	.md-accommodation-available > .align-center {
 		display: block;
 		margin: 0 auto;
 		float: none;
 		width: 100%;
 	}
-	.md-accomodation .title-checkroom {width: auto;}
-	.md-accomodation .md-booking {padding-left: 0;}
-	.md-accomodation .booking-inline .form-group {margin-bottom: 0;}
+	.md-accommodation .title-checkroom {width: auto;}
+	.md-accommodation .md-booking {padding-left: 0;}
+	.md-accommodation .booking-inline .form-group {margin-bottom: 0;}
 }
 @media screen and (max-width: 1200px) { 
 
@@ -241,8 +241,8 @@
 	.row-home .media-body  {margin-top: 20px; padding-left: 0;}
 	.media-header-big {font-size: 35px;}
 	/* Accomodation */
-	.md-accomodation .row .grid_4 {width: auto; margin-bottom: 25px;}
-	.md-accomodation .row {margin-bottom: 0;}
+	.md-accommodation .row .grid_4 {width: auto; margin-bottom: 25px;}
+	.md-accommodation .row {margin-bottom: 0;}
 	/* Blog */
 	.md-blog .list-article .pull-left {float:none; width: 100%; margin-right: 0; margin-bottom: 20px;}
 	.md-blog .list-article .media-body {width: 100%;}

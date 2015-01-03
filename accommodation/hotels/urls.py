@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^index.html$', views.index, name='index'),
     url(r'^(?P<hotel_id>\d+)/$', views.accommodation, name='accommodation'),
     url(r'(?P<hotel_id>\d+)/(?P<room_id>\d+)/$', views.room_details, name='room_details'),
+
 )

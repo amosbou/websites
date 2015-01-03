@@ -20,3 +20,12 @@ class Room(models.Model):
         return self.room_name
 
 
+class Calendar(models.Model):
+    room = models.OneToOneField(Room, primary_key=True)
+    calendar_name = models.CharField(max_length=200, default="unnamed")
+    calendar_data = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.calendar_name
+
+

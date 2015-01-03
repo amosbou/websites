@@ -1,290 +1,30 @@
 <!doctype html>
 <html lang="en">
+{% extends "hotels/base.html" %}
 {% load staticfiles %}
+
 <head>
 	<title>Home</title>
-	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<!--  Viewport setting -->
-	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
-
-	<!--  Font -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/font.css' %}">
-	
-	<!-- Jquery UI CSS   -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/libs/jquery-ui-1.10.3.custom.css' %}">
-
-	<!-- Library CSS  -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/jquery.bxslider.css' %}">
-
-
-	<!-- Main CSS  -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/style.css' %}">
-
-
-	<!-- Responsive CSS  -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/responsive.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/responsive-menu.css' %}">
-
-
-	<!-- Fix ie9  -->
-	<!--[if IE 9]>
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/ie9.css' %}">
-	<![endif]-->
-
 </head>
 <body>
 	<div class="md-hotel">
 		<div id="mp-pusher" class="mp-pusher">
 			<!-- Header -->
-			<header class="md-header">
-				<div class="container clearfix">
-					<div class="grid_12">
-						
 
-						<!-- Logo -->
-						<h1 class="md-logo">
-							<a href="index.html">
-								<img src="{% static 'hotels/images/logo.png' %}" alt="logo">
-							</a>
-						</h1>
-						
-
-
-						<!-- Menu -->
-
-                        <nav id="main-nav" class="nav-collapse">
-							<ul id="main-menu" class="md-menu">
-								<li><a href="{% url 'hotels:index' %}">Home</a></li>
-								<li class="have-submenu"><a href="#">Accommodation</a>
-									<div class="sub-menu">
-										<ul class="sub-menu-inner">
-											{% if hotels_list %}
-												{% for hotel in hotels_list %}
-													<!--<li><a href="/hotels/{{ hotel.id }}/">{{ hotel.hotel_name }}</a></li>-->
-											        <li><a href="{% url 'hotels:accommodation' hotel.id %}">{{ hotel.hotel_name }}</a></li>
-												{% endfor %}
-											{% else %}
-												<p>No hotels are available.</p>
-											{% endif %}
-										</ul>
-									</div>
-								</li>
-								<li class="have-submenu"><a href="#">Pages</a>
-									<div class="sub-menu">
-										<ul class="sub-menu-inner">
-											<li><a href="blog.html">Blog</a></li>
-											<li><a href="testimonial.html">Testimonials</a></li>
-											<li><a href="shortcode.html">Shortcode</a></li>
-											<li><a href="typography.html">Typography</a></li>
-											<li><a href="booking-cart.html">Booking Cart</a></li>
-											<li><a href="checkout.html">CheckOut</a></li>
-											<li><a href="check-available.html">Check Available</a></li>
-										</ul>
-									</div>
-								</li>
-								<li><a href="new-deal.html">news &amp; deals</a></li>
-								<li><a href="world-of-flawles.html">world of flawles</a></li>
-								<li><a href="contact.html">contact</a></li>
-							</ul>
-
-
-						</nav>
-
-
-						<!-- Icon Responsvie Menu -->
-						<a id="sys_btn_toogle_menu" class="btn-toogle-res-menu" href="#alternate-menu"></a>
-
-
-						<!-- Language Bar -->
-						<ul class="language-bar">
-							<li><a href="#"><img src="{% static 'hotels/images/english.png' %}" alt="english"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/croatian.png' %}" alt="croatian"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/german.png' %}" alt="german"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/slovenian.png' %}" alt="slovenian"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/czech.png' %}" alt="czech"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/french.png' %}" alt="french"></a></li>
-						</ul>
-
-
-
-					</div>
-				</div>
-			</header>
 			<!-- Header End -->
 
 			<!-- Menu Responsive -->
-			<nav id="mp-menu" class="mp-menu alternate-menu mp-overlap right-side">
-	            <div class="mp-level">
-	                <h2>Menu</h2>
-	                <ul>
-	                	<li>
-	                    	<a href="index.html">Home</a>
-	                    </li>
-	                    <li>
-	                    	<a href="accommodation.html">Accommodation</a>
-	                    </li>
-	                    <li class="has-sub">
-	                        <a href="#">Pages</a>
-	                        <div class="mp-level">
-	                            <h2>Pages</h2>
-	                            <a class="mp-back" href="#">Back</a>
-	                            <ul>
-	                                <li><a href="blog.html">Blog</a></li>
-									<li><a href="testimonial.html">Testimonials</a></li>
-									<li><a href="shortcode.html">Shortcode</a></li>
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="booking-cart.html">Booking Cart</a></li>
-									<li><a href="checkout.html">CheckOut</a></li>
-									<li><a href="check-available.html">Check Available</a></li>
-	                            </ul>
-	                        </div>
-	                    </li>
-	                    <li>
-	                        <a href="new-deal.html">News &amp; deals</a>
-	                    </li>
-	                    <li>
-	                        <a href="world-of-flawles.html">World of flawles</a>
-	                    </li>
-	                    <li>
-	                    	<a href="contact.html">Contact</a>
-	                    </li>
-						<li>
-							<!-- Language Bar -->
-							<div class="language-bar2">
-								<span><a href="#"><img src="{% static 'hotels/images/english.png' %}" alt="english"></a></span>
-								<span><a href="#"><img src="{% static 'hotels/images/croatian.png' %}" alt="croatian"></a></span>
-								<span><a href="#"><img src="{% static 'hotels/images/german.png' %}" alt="german"></a></span>
-								<span><a href="#"><img src="{% static 'hotels/images/slovenian.png' %}" alt="slovenian"></a></span>
-								<span><a href="#"><img src="{% static 'hotels/images/czech.png' %}" alt="czech"></a></span>
-								<span><a href="#"><img src="{% static 'hotels/images/french.png' %}" alt="french"></a></span>
-							</div>
-						</li>
-	                </ul>
-	            </div>
-	        </nav>
+
 	        <!-- Menu Responsive End -->
 
 
-			<!-- Slider with Jquery bxslider -->
-			<section class="md-slide-wrapper md-slide-home">
-				<!-- Slide Image-->
-				<ul id="md-slide-fade" class="md-slide clearfix">
-					<li>
-						<img src="{% static 'hotels/img/slide/slide-1.jpg' %}" alt="">
-						<div class="content-slide">
-							<div class="home-content">
-								<h2 class="slide-title">blanditis</h2>
-								<h3 class="slide-title">praesentium</h3>
-								<div class="dots-line">
-									<span></span>
-									<span></span>
-									<span></span>
-								</div>
-								<p class="slide-description">Vestibulum facilisis eros at mattis aliquam. Aliquam lacinia nulla eget eros volutpat dictum. Ut venenatis ante mauris, quis vestibulum felis.</p>
-								<a href="#" class="btn btn-border btn-border-white">see more</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<img src="{% static 'hotels/img/slide/slide-2.jpg' %}" alt="">
-						<div class="content-slide">
-							<div class="home-content">
-								<h2 class="slide-title alter">Aenean Turpis </h2>
-								<h3 class="slide-title alter">Malesuada Quis Ante</h3>
-								<p class="slide-description">Morbi consectetur, sem sit amet mollis fermentum, lectus risus euismod diam, vitae sollicitudin purus eros vel dolor. .</p>
-								<a href="#" class="btn btn-border btn-border-white">see more</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<img src="{% static 'hotels/img/slide/slide-3.jpg' %}" alt="">
-						<div class="content-slide dark">
-							<div class="home-content">
-								<h2 class="slide-title">cerat<span class="title-inner">set</span>luctus</h2>
-								<p class="slide-description">Morbi consectetur, sem sit amet mollis fermentum, lectus risus euismod diam, vitae sollicitudin purus eros vel dolor. .</p>
-								<a href="#" class="btn btn-border btn-border-white">see more</a>
-							</div>
-						</div>
-					</li>
-				</ul>
-
-
-
-
-				
-			</section>
-			<!-- Slider End -->
 
 
 
 			<!-- Body -->
 			<div class="md-body-wrapper">
 				<div class="md-home">
-					<section class="row check-availability">
-						<div class="container clearfix">
-							<div class="grid_3">
-								<h2 class="title-checkroom">Check availability</h2>
-							</div>
-							<div class="grid_9">
-								<section class="md-booking">
-									<div class="box-booking booking-inline clearfix">
-										<form>
-											<div class="form-group">
-												<label class="label-control">Arrival Date</label>
-												<div class="booking-form select-white">
-													<label class="collapse input">
-														<input type="text" id="arrival-date" class="input-control border-white"/>
-													</label>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="label-control">Departure Date</label>
-												<div class="booking-form select-white">
-													<label class="collapse input">
-														<input type="text" id="departure-date" class="input-control border-white"/>
-													</label>
-												</div>
-											</div>
-											<div class="form-group select">
-												<label class="label-control">Adults</label>
-												<div class="input-group select-white">
-													<label class="collapse">
-														<select id="form-select" class="form-select">
-															<option class="option-test">1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</label>
-												</div>
-											</div>
-											<div class="form-group select">
-												<label class="label-control">Children</label>
-												<div class="input-group select-white">
-													<label class="collapse">
-														<select class="form-select">
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</label>
-												</div>
-											</div>
-											<div class="form-group last">
-												<label class="label-control"></label>
-												<a href="#" class="btn btn-large btn-darkbrown">Check</a>
-											</div>
-										</form>
-									</div><!-- /.box-booking -->
-								</section><!-- /.md-booking -->
-							</div>
-						</div><!-- /.container -->
-					</section>
+
 					<section class="row md-home-body">
 						<div class="container clearfix">
 							<aside class="grid_3 md-sidebar">
@@ -365,58 +105,7 @@
 
 
 			<!-- Footer -->
-			<footer class="md-footer">
-				<div class="container clearfix">
-					<div class="grid_12">
-						<div class="grid_3 footer-column inner-left">
-							<div class="hotel-address">
-								<h3>Flawles Hotel</h3>
-								<div class="footer-content">
-									<address>
-										<p>125 West 26th Street</p>
-										<p>Suite 600 New York, NY 10011</p>
-									</address>
-									<p> <a href="#" class="website">© Flawles.com</a></p>
-								</div>
-							</div>
-						</div>
-						<div class="grid_5 footer-column">
-							<div class="hotel-contact">
-								<h3>Contact</h3>
-								<ul class="footer-content">
-									<li>telephone <span class="hotel-number">(012) 345-6789</span></li>
-									<li>fax <span class="hotel-number">(012) 345-6789</span></li>
-									<li>reservations <span class="hotel-number">(012) 345-6789</span></li>
-								</ul>
-							</div>
-						</div>
-						<div class="grid_4 footer-column inner-right">
-							<div class="hotel-news">
-								<h3>Newsletter</h3>
-								<div class="footer-content">
-									<p>Sign up for our newsletter, and we’ll keep you updated on all events at Flawles!</p>
-									<form>
-										<input type="text"><button type="submit" class="btn btn-brown">Send</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="grid_12">
-						<div class="footer-social">
-							<div class="social-inner">
-								<h4>Follow us</h4>
-								<span class="social-group">
-									<a href="#"><i class="icon icon-facebook"></i></a>
-									<a href="#"><i class="icon icon-twitter"></i></a>
-									<a href="#"><i class="icon icon-google"></i></a>
-									<a href="#"><i class="icon icon-dribbble"></i></a>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>	
-			</footer>
+
 			<!-- Footer End -->
 		</div><!-- /.mp-pusher -->
 	</div>

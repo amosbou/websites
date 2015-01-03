@@ -1,158 +1,28 @@
 <!doctype html>
 <html lang="en">
+{% extends "hotels/base.html" %}
 {% load staticfiles %}
 <head>
+	{% block title %}
 	<title>Accommodation Detail</title>
-	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<!--  Viewport setting -->
-	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
-
-	<!--  Font -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/font.css' %}">
-	
-	<!-- Jquery UI CSS   -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/libs/jquery-ui-1.10.3.custom.css' %}">
-
-	<!-- Main CSS  -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/style.css' %}">
-
-
-	<!-- Responsive CSS  -->
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/responsive.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/responsive-menu.css' %}">
-
-
-	<!-- Fix ie9  -->
-	<!--[if IE 9]>
-	<link rel="stylesheet" type="text/css" href="{% static 'hotels/css/ie9.css' %}">
-	<![endif]-->
-
+    {% endblock %}
 </head>
 <body>
 	<div class="md-hotel">
 		<div id="mp-pusher" class="mp-pusher">
 			<!-- Header -->
-			<header class="md-header">
-				<div class="container clearfix">
-					<div class="grid_12">
 
-
-						<!-- Logo -->
-						<h1 class="md-logo">
-							<a href="index.html">
-								<img src="{% static 'hotels/images/logo.png' %}" alt="logo">
-							</a>
-						</h1>
-						
-
-
-						<!-- Menu -->
-						<nav id="main-nav" class="nav-collapse">
-							<ul id="main-menu" class="md-menu">
-								<li><a href="{% url 'hotels:index' %}">Home</a></li>
-								<li class="have-submenu"><a href="#">Accommodation</a>
-									<div class="sub-menu">
-										<ul class="sub-menu-inner">
-											{% if hotels_list %}
-												{% for hotel in hotels_list %}
-													<!--<li><a href="/hotels/{{ hotel.id }}/">{{ hotel.hotel_name }}</a></li>-->
-											        <li><a href="{% url 'hotels:accommodation' hotel.id %}">{{ hotel.hotel_name }}</a></li>
-												{% endfor %}
-											{% else %}
-												<p>No hotels are available.</p>
-											{% endif %}
-										</ul>
-									</div>
-								</li>
-								<li class="have-submenu"><a href="#">Pages</a>
-									<div class="sub-menu">
-										<ul class="sub-menu-inner">
-											<li><a href="blog.html">Blog</a></li>
-											<li><a href="testimonial.html">Testimonials</a></li>
-											<li><a href="shortcode.html">Shortcode</a></li>
-											<li><a href="typography.html">Typography</a></li>
-											<li><a href="booking-cart.html">Booking Cart</a></li>
-											<li><a href="checkout.html">CheckOut</a></li>
-											<li><a href="check-available.html">Check Available</a></li>
-										</ul>
-									</div>
-								</li>
-								<li><a href="new-deal.html">news &amp; deals</a></li>
-								<li><a href="world-of-flawles.html">world of flawles</a></li>
-								<li><a href="contact.html">contact</a></li>
-							</ul>
-
-							
-						</nav>
-
-
-						<!-- Language Bar -->
-						<ul class="language-bar">
-							<li><a href="#"><img src="{% static 'hotels/images/english.png' %}" alt="english"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/croatian.png' %}" alt="croatian"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/german.png' %}" alt="german"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/slovenian.png' %}" alt="slovenian"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/czech.png' %}" alt="czech"></a></li>
-							<li><a href="#"><img src="{% static 'hotels/images/french.png' %}" alt="french"></a></li>
-						</ul>
-
-						
-						<!-- Icon Responsvie Menu -->
-						<a id="sys_btn_toogle_menu" class="btn-toogle-res-menu" href="#alternate-menu"></a>
-
-
-					</div>
-				</div>
-			</header><!-- /.md-header -->
 
 			<!-- Menu Responsive -->
-			<nav id="mp-menu" class="mp-menu alternate-menu mp-overlap right-side">
-	            <div class="mp-level">
-	                <h2>Menu</h2>
-	                <ul>
-	                	<li>
-	                    	<a href="index.html">Home</a>
-	                    </li>
-	                    <li>
-	                    	<a href="accommodation.html">Accommodation</a>
-	                    </li>
-	                    <li class="has-sub">
-	                        <a href="#">Pages</a>
-	                        <div class="mp-level">
-	                            <h2>Pages</h2>
-	                            <a class="mp-back" href="#">Back</a>
-	                            <ul>
-	                                <li><a href="blog.html">Blog</a></li>
-									<li><a href="testimonial.html">Testimonials</a></li>
-									<li><a href="shortcode.html">Shortcode</a></li>
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="booking-cart.html">Booking Cart</a></li>
-									<li><a href="checkout.html">CheckOut</a></li>
-									<li><a href="check-available.html">Check Available</a></li>
-	                            </ul>
-	                        </div>
-	                    </li>
-	                    <li>
-	                        <a href="new-deal.html">News &amp; deals</a>
-	                    </li>
-	                    <li>
-	                        <a href="world-of-flawles.html">World of flawles</a>
-	                    </li>
-	                    <li>
-	                    	<a href="contact.html">Contact</a>
-	                    </li>
-	                </ul>
-	            </div>
-	        </nav>
+
 	        <!-- Menu Responsive End -->
-			
+
 			<!-- Body -->
 			<div class="md-body-wrapper">
 				<section class="container">
 					<div class="md-body md-accommodation">
 						<section class="row md-accommodation-available clearfix">
+							{% block slider %}
 							<div class="grid_3 align-center">
 								<header class="box-heading heading-large">
 									A
@@ -162,81 +32,34 @@
 									</div>
 								</header>
 							</div>
-							<div class="grid_9">
-								<section class="md-booking">
-									<h2 class="title-checkroom">Check availability</h2>
-									<div class="box-booking booking-inline">
-										<form>
-											<div class="form-group">
-												<label class="label-control">Arrival Date</label>
-												<div class="booking-form select-black">
-													<label class="collapse input">
-														<input type="text" id="arrival-date" class="input-control border-black"/>
-													</label>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="label-control">Departure Date</label>
-												<div class="booking-form select-black">
-													<label class="collapse input">
-														<input type="text" id="departure-date" class="input-control border-black"/>
-													</label>
-												</div>
-											</div>
-											<div class="form-group select">
-												<label class="label-control">Adults</label>
-												<div class="input-group select-black">
-													<label class="collapse">
-														<select class="form-select">
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</label>
-												</div>
-											</div>
-											<div class="form-group select">
-												<label class="label-control">Children</label>
-												<div class="input-group select-black">
-													<label class="collapse">
-														<select class="form-select">
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</label>
-												</div>
-											</div>
-											<div class="form-group last">
-												<label class="label-control"></label>
-												<a href="#" class="btn btn-large btn-darkbrown">Check</a>
-											</div>
-										</form>
-									</div><!-- /.box-booking -->
-								</section><!-- /.md-booking -->
-							</div>
+							{% endblock %}
+
 						</section>
-
+ 						{% block body %}
 						<section class="md-accommodation-content">
-
 								{% if hotel.room_set.all %}
 									{% for room in hotel.room_set.all %}
 										{% if forloop.counter0|divisibleby:3 %}
 											<div class="row clearfix">
+												<br/>
 										{% endif %}
-												<div class="grid_4">
+												<div class="grid_3">
 													<article class="media">
+
 														<figure>
-															<img src="{% static 'hotels/img/accommodation/accommodation' %}-{{ room.id }}.jpg" alt="" class="media-object">
+
+															<img src="{% static 'hotels/img/accommodation/accommodation' %}-{{ room.id }}.jpg" alt="" >
+
 														</figure>
+
+
 														<section class="media-body">
 															<h3 class="media-header h4"><a href="{% url 'hotels:room_details' hotel.id room.id %}">{{ room.room_name }}</a></h3>
 															<p class="media-content">Mauris egestas, tellus sed venenatis tincidunt, odio diam iaculis augue, nec tincidunt enim odio id arcu. Ut pellentesque, quam ut sagittis adipiscing, lectus metus mollis magna... </p>
 															<a class="btn btn-small btn-border btn-border-brown" href="{% url 'hotels:room_details' hotel.id room.id %}">See Detail</a>
+															{% if forloop.last %}
+																<br></br>
+															{% endif %}
 														</section>
 													</article>
 												</div>
@@ -245,69 +68,20 @@
 										{% endif %}
 									{% endfor %}
 								{% else %}
-												<p>No rooms are available.</p>
+									<p>No rooms are available.</p>
 								{% endif %}
 
 
 
 
 						</section>
+						{% endblock %}
 					</div><!-- /.md-accommodation -->
 				</section><!-- /.md-wrapper  -->
 			</div>
 
 			<!-- Footer -->
-			<footer class="md-footer">
-				<div class="container clearfix">
-					<div class="grid_3 footer-column">
-						<div class="hotel-address">
-							<h3>Flawles Hotel</h3>
-							<div class="footer-content">
-								<address>
-									<p>125 West 26th Street</p>
-									<p>Suite 600 New York, NY 10011</p>
-								</address>
-								<p class="website">© Flawles.com</p>
-							</div>
-						</div>
-					</div>
-					<div class="grid_5 footer-column">
-						<div class="hotel-contact">
-							<h3>Contact</h3>
-							<ul class="footer-content">
-								<li>telephone <span class="hotel-number">(012) 345-6789</span></li>
-								<li>fax <span class="hotel-number">(012) 345-6789</span></li>
-								<li>reservations <span class="hotel-number">(012) 345-6789</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="grid_4 footer-column">
-						<div class="hotel-news">
-							<h3>Newsletter</h3>
-							<div class="footer-content">
-								<p>Sign up for our newsletter, and we’ll keep you updated on all events at Flawles!</p>
-								<form>
-									<input type="text" placeholder="Your Mail ...">
-									<button type="submit" class="btn btn-brown">Send</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="grid_12">
-						<div class="footer-social">
-							<div class="social-inner">
-								<h4>Follow us</h4>
-								<span class="social-group">
-									<a href="#"><i class="icon icon-facebook"></i></a>
-									<a href="#"><i class="icon icon-twitter"></i></a>
-									<a href="#"><i class="icon icon-google"></i></a>
-									<a href="#"><i class="icon icon-dribbble"></i></a>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>	
-			</footer><!-- /.md-footer -->
+
 		</div><!--/.mp-pusher -->
 	</div>
 <!-- Library Javascript  -->
