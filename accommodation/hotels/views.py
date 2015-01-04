@@ -36,6 +36,17 @@ def room_details(request, hotel_id, room_id):
     return render(request, 'hotels/room-detail.html', context)
 
 
+def reservation_form(request, hotel_id, room_id):
+    hotels_list = Hotel.objects.order_by('hotel_city')
+    hotel = Hotel.objects.get(pk=hotel_id)
+    try:
+        room = Room.objects.get(pk=room_id)
+    except Hotel.DoesNotExist:
+        raise Http404
+    context = {'hotels_list': hotels_list, 'hotel': hotel, 'room': room}
+    return render(request, 'hotels/reservation-form.html', context)
+
+
 
 
 
