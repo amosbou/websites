@@ -8,7 +8,7 @@
 	<head>
 		{% block title %}<title>Nation Hotel &#8211; Responsive WordPress Theme</title>{% endblock %}
 		<!--<meta name="description" content="Just another WordPress site" />-->
-		<!--<link type="image/x-icon" rel="icon" href="{% static 'hotels/wp-content/themes/wpnation/favicon.ico"  /> -->
+		<!--<link type="image/x-icon" rel="icon" href="{% url  'hotels:wp-content/themes/wpnation/favicon.ico"  /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<!-- GOOGLE WEB FONT -->
@@ -17,19 +17,19 @@
 		<!-- GOOGLE MAPS API -->
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key= AIzaSyCbEJ826CbvSGwFTtO-KTWoowpdn3GxF50&sensor=false"></script>
 				
-		<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Feed" href="{% static 'hotels/feed/" />-->
-<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Comments Feed" href="{% static 'hotels/comments/feed/" />-->
-<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Home Page 2 Comments Feed" href="{% static 'hotels/home-page-2/feed/" />-->
-<link rel='stylesheet' id='contact-form-7-css'  href="{% static 'hotels/wp-content/plugins/contact-form-7/includes/css/styles.css' %}" type='text/css' media='all' />
-<link rel='stylesheet' id='nation-calendar-style-css'  href="{% static 'hotels/wp-content/plugins/nation-booking/includes/css/calendar-style.css' %}" type='text/css' media='all' />
-<link rel='stylesheet' id='rs-plugin-settings-css'  href="{% static 'hotels/wp-content/plugins/revslider/rs-plugin/css/settings.css' %}" type='text/css' media='all' />
+		<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Feed" href="{% url  'hotels:feed/" />-->
+<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Comments Feed" href="{% url  'hotels:comments/feed/" />-->
+<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Home Page 2 Comments Feed" href="{% url  'hotels:home-page-2/feed/" />-->
+<link rel='stylesheet' id='contact-form-7-css'  href="{% static  'hotels/wp-content/plugins/contact-form-7/includes/css/styles.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nation-calendar-style-css'  href="{% static  'hotels/wp-content/plugins/nation-booking/includes/css/calendar-style.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css'  href="{% static  'hotels/wp-content/plugins/revslider/rs-plugin/css/settings.css' %}" type='text/css' media='all' />
 <style type='text/css'>
 .tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
 </style>
-<link rel='stylesheet' id='bookingcalendar-css'  href="{% static 'hotels/wp-content/themes/wpnation/css/booking-calendar-pro.css' %}" type='text/css' media='all' />
-<link rel='stylesheet' id='settings-css'  href="{% static 'hotels/wp-content/themes/wpnation/css/settings.css' %}" type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href="{% static 'hotels/wp-content/themes/wpnation/style.css' %}" type='text/css' media='all' />
-<link rel='stylesheet' id='switcher-css'  href="{% static 'hotels/wp-content/themes/wpnation/css/switcher.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='bookingcalendar-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/booking-calendar-pro.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='settings-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/settings.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="{% static  'hotels/wp-content/themes/wpnation/style.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='switcher-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/switcher.css' %}" type='text/css' media='all' />
 <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/jquery.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/jquery-migrate.min.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
@@ -45,12 +45,12 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 </script>
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/allscript.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/switcher.js' %}"></script>
-<!--<link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% static 'hotels/xmlrpc.php?rsd" />-->
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static 'hotels/wp-includes/wlwmanifest.xml' %}" />
+<!--<link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% url  'hotels:xmlrpc.php?rsd" />-->
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static  'hotels/wp-includes/wlwmanifest.xml' %}" />
 <!--<meta name="generator" content="WordPress 4.0.1" />-->
-<link rel='canonical' href="{% static 'hotels/' %}" />
-<link rel='shortlink' href="{% static 'hotels/' %}" />
-	</head>
+<link rel='canonical' href="{ static 'hotels/' }" />
+<link rel='shortlink' href="{ static 'hotels/' }" />
+</head>
 
 
 
@@ -170,7 +170,7 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 								<div id="top-phone"><span class="icon-mobile-phone"></span>+1 015 344 343 31</div>
 								<div id="top-email"><span class="icon-envelope"></span> nationhotel@example.com</div>
 								<!-- END TOP CONTACT INFO -->
-								<a href="{% static 'hotels/reservation-page-2-2/" id="header-reservation-button">Book Now</a>
+								<a href="{% url  'hotels:reservation-page-2-2/" id="header-reservation-button">Book Now</a>
 
 
 								<div id="top-search"><span class="icon-search"></span>
@@ -223,86 +223,87 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					
 							<!-- BEGIN MAIN MOBILE NAVIGATION -->
 							<ul id="mobile-navigation-menu"><li><span class="icon-reorder"></span><ul id="mobile-navigation-menu-list"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-611"><a href="{% static 'hotels">Home</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-618"><a href="{% static 'hotels/three-rooms-list/">Reservation	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-619"><a href="{% static 'hotels/three-rooms-list/">-Rooms 3 Columns</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="{% static 'hotels/two-columns-rooms-list/">-Rooms 2 Columns</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-621"><a href="{% static 'hotels/one-column-rooms-list/">-Rooms 1 Columns</a></li>
-	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-605"><a href="{% static 'hotels/rooms/room-with-one-bedroom/">-Rooms Single</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% static 'hotels/reservation-page-2-2/">-Reservation Page</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-618"><a href="{% url 'hotels:three_rooms_list' %}">Reservation	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-619"><a href="{% url 'hotels:three_rooms_list' %}">-Rooms 3 Columns</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="{% url  'hotels:two_columns_rooms_list' %}">-Rooms 2 Columns</a></li>
+	<!--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-621"><a href="{ url  'hotels:one-column-rooms-list' }">-Rooms 1 Columns</a></li>-->
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-605"><a href="{% url 'hotels:room_with_one_bedroom' 1 %}">-Rooms Single</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% url 'hotels:reservation_page_2_2' %}">-Reservation Page</a></li>
 </a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-616"><a href="{% static 'hotels/page-with-header-example/">Pages	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-627"><a href="{% static 'hotels/gallery-page-with-header/">-Gallery		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-628"><a href="{% static 'hotels/gallery-page-with-header/">--With header</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-629"><a href="{% static 'hotels/gallery-without-header-page/">--Without header</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-630"><a href="{% static 'hotels/gallery-with-sidebar/">--With sidebar</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-616"><a href="{ url  'hotels:page-with-header-example' }">Pages	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-627"><a href="{ url  'hotels:gallery-page-with-header' }">-Gallery		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-628"><a href="{ url  'hotels:gallery-page-with-header' }">--With header</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-629"><a href="{ url  'hotels:gallery-without-header-page' }">--Without header</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-630"><a href="{ url  'hotels:gallery-with-sidebar' }">--With sidebar</a></li>
 </a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-631"><a href="{% static 'hotels/235-2/">-Columns</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-638"><a href="{% static 'hotels/list-and-button-example/">-Button&#038;List</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-632"><a href="{% static 'hotels/typography-usage-example/">-Typography</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-639"><a href="{% static 'hotels/widgets-usage-example/">-Widgets</a></li>
-	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-610"><a href="{% static 'hotels/404">-404</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-640"><a href="{% static 'hotels/list-and-button-example-2/">-Messages&#038;Icons</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-633"><a href="{% static 'hotels/page-with-header-example/">-Pages		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-635"><a href="{% static 'hotels/page-with-header-example/">--Page right sidebar</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-634"><a href="{% static 'hotels/page-with-left-sidebar-example/">--Page left sidebar</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-637"><a href="{% static 'hotels/page-fullwidth-example/">--Page fullwidth</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-636"><a href="{% static 'hotels/page-without-header-example/">--Page without header</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-631"><a href="{ url  'hotels:235-2' }">-Columns</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-638"><a href="{ url  'hotels:list-and-button-example' }">-Button&#038;List</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-632"><a href="{ url  'hotels:typography-usage-example' }">-Typography</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-639"><a href="{ url  'hotels:widgets-usage-example' }">-Widgets</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-610"><a href="{ url  'hotels:404" }>-404</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-640"><a href="{ url  'hotels:list-and-button-example-2' }">-Messages&#038;Icons</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-633"><a href="{ url  'hotels:page-with-header-example' }">-Pages		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-635"><a href="{ url  'hotels:page-with-header-example' }">--Page right sidebar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-634"><a href="{ url  'hotels:page-with-left-sidebar-example' }">--Page left sidebar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-637"><a href="{ url  'hotels:page-fullwidth-example' }">--Page fullwidth</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-636"><a href="{ url  'hotels:page-without-header-example' }">--Page without header</a></li>
 </a></li>
 </a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-622"><a href="{% static 'hotels/blog-page-with-right-sidebar/">Blog	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"><a href="{% static 'hotels/blog-page-with-right-sidebar/">-With right sidebar</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-624"><a href="{% static 'hotels/blog-page-with-left-sidebar/">-With left sidebar</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-626"><a href="{% static 'hotels/blog-fullwidth-page/">-Fullwidth</a></li>
-	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-609"><a href="{% static 'hotels/?p=50">-Blog single</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-622"><a href="{ url  'hotels:blog-page-with-right-sidebar' }">Blog	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"><a href="{ url  'hotels:blog-page-with-right-sidebar' }">-With right sidebar</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-624"><a href="{ url  'hotels:blog-page-with-left-sidebar' }">-With left sidebar</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-626"><a href="{ url  'hotels:blog-fullwidth-page' }">-Fullwidth</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-609"><a href="{ url  'hotels:?p=50">-Blog single</a></li>
 </a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-623"><a href="{% static 'hotels/contact/">Contact</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-623"><a href="{ url  'hotels:contact' }">Contact</a></li>
 </ul></li></ul>	
 							<!-- END MAIN MOBILE NAVIGATION -->
 						
 						
 							<!-- BEGIN MAIN NAVIGATION -->
-							<ul id="top-navigation-menu" class="dropdown menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home"><a href="{% static 'hotels"><div class="top-navigation-content-wrap">Home<span class="under-title">Site homepage</span></div></a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% static 'hotels/three-rooms-list/"><div class="top-navigation-content-wrap">Reservation<span class="under-title">Book your room online</span></div></a>
+							<ul id="top-navigation-menu" class="dropdown menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home"><a href="{% url 'hotels:index' %}"><div class="top-navigation-content-wrap">Home<span class="under-title">Site homepage</span></div></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% url 'hotels:three_rooms_list' %}{% static 'hotels/three-rooms-list' %}"><div class="top-navigation-content-wrap">Reservation<span class="under-title">Book your room online</span></div></a>
 <ul class='sub_menu'>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/three-rooms-list/">Rooms 3 Columns</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/two-columns-rooms-list/">Rooms 2 Columns</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/one-column-rooms-list/">Rooms 1 Columns</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{% static 'hotels/rooms/room-with-one-bedroom/">Rooms Single</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/reservation-page-2-2/">Reservation Page</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:three_rooms_list' %}">Rooms</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:two_columns_rooms_list' %}">Rooms 2 Columns</a></li>
+<!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url 'hotels:one-column-rooms-list' }">Rooms 1 Columns</a></li>-->
+<!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{ url 'hotels:room-with-one-bedroom' }">Rooms Single</a></li>-->
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:reservation_page_2_2' %}">Reservation Page</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% static 'hotels/page-with-header-example/"><div class="top-navigation-content-wrap">Pages<span class="under-title">Template Features</span></div></a>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:page-with-header-example' }"><div class="top-navigation-content-wrap">Pages<span class="under-title">Template Features</span></div></a>
 <ul class='sub_menu'>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% static 'hotels/gallery-page-with-header/">Gallery</a>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:gallery-page-with-header' }">Gallery</a>
 	<ul class='sub_menu2'>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/gallery-page-with-header/">With header</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/gallery-without-header-page/">Without header</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/gallery-with-sidebar/">With sidebar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:gallery-page-with-header' }">With header</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:gallery-without-header-page' }">Without header</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:gallery-with-sidebar' }">With sidebar</a></li>
 	</ul>
 </li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/235-2/">Columns</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/list-and-button-example/">Button&#038;List</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/typography-usage-example/">Typography</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/widgets-usage-example/">Widgets</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{% static 'hotels/404">404</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/list-and-button-example-2/">Messages&#038;Icons</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% static 'hotels/page-with-header-example/">Pages</a>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:235-2' }">Columns</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:list-and-button-example' }">Button&#038;List</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:typography-usage-example' }">Typography</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:widgets-usage-example' }">Widgets</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{ url  'hotels:404' }">404</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:list-and-button-example-2' }">Messages&#038;Icons</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:page-with-header-example' }">Pages</a>
 	<ul class='sub_menu2'>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/page-with-header-example/">Page right sidebar</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/page-with-left-sidebar-example/">Page left sidebar</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/page-fullwidth-example/">Page fullwidth</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/page-without-header-example/">Page without header</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:page-with-header-example' }">Page right sidebar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:page-with-left-sidebar-example' }">Page left sidebar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:page-fullwidth-example' }">Page fullwidth</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:page-without-header-example' }">Page without header</a></li>
 	</ul>
 </li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% static 'hotels/blog-page-with-right-sidebar/"><div class="top-navigation-content-wrap">Blog<span class="under-title">News&amp;Events</span></div></a>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:blog-page-with-right-sidebar' }"><div class="top-navigation-content-wrap">Blog<span class="under-title">News&amp;Events</span></div></a>
 <ul class='sub_menu'>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/blog-page-with-right-sidebar/">With right sidebar</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/blog-page-with-left-sidebar/">With left sidebar</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/blog-fullwidth-page/">Fullwidth</a></li>
-<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{% static 'hotels/?p=50">Blog single</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:blog-page-with-right-sidebar' }">With right sidebar</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:blog-page-with-left-sidebar' }">With left sidebar</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:blog-fullwidth-page' }">Fullwidth</a></li>
+<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{ url  'hotels:?p=50' }">Blog single</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% static 'hotels/contact/"><div class="top-navigation-content-wrap">Contact<span class="under-title">Get in touch with us</span></div></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url  'hotels:contact' }"><div class="top-navigation-content-wrap">Contact<span class="under-title">Get in touch with us</span></div></a></li>
 </ul>							
 							<!-- END MAIN NAVIGATION -->
-							
+						{% block reservation_widget %}
+
 														<script>
 								(function($) {
 									var dateToday = new Date();
@@ -341,7 +342,6 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 									});
 								})(window.jQuery);
 							</script>
-						{% block reservation_widget %}
 						<div id="reservation-widget-wrap">
 							<div id="reservation-widget-header">Rates from  <span class="reservation-widget-min-price">$80<span class='divider-space'>/</span>NIGHT</span></div>
 							<div id="reservation-widget-content">
@@ -629,8 +629,9 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 
 
 			</div><!-- END REVOLUTION SLIDER -->		<!-- END MAIN SLIDER -->
-{% endblock rev_slider %}
-
+        {% endblock rev_slider %}
+        {% block page_header %}
+        {% endblock page_header %}
 		<!-- BEGIN MAIN ROOM VIEW -->
 		{% block content %}
 		<div id="room-view-wrap" class="main-rooms-list">
@@ -643,9 +644,9 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<!-- BEGIN MAIN ROOMS WRAP -->
 					<div class="rooms-list-item-wrap">
 						<div class="rooms-list-item-image-wrap">
-							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/reservation1-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />							<a href="{% static 'hotels/rooms/room-with-one-bedroom/" class="room-overlay-link"><div class="room-main-list-overlay">
+							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/reservation1-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />							<a href="{% url  'hotels:rooms/room-with-one-bedroom/" class="room-overlay-link"><div class="room-main-list-overlay">
 								<div class="room-overlay-content">
-									<a href="{% static 'hotels/rooms/room-with-one-bedroom/"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
+									<a href="{% url  'hotels:room_with_one_bedroom' 1 %}"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
 									<div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span></div>
 								</div>
 								</div></a>
@@ -654,7 +655,7 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 							</div>
 						</div>
 						<div class="rooms-list-content-wrap module-bottom">
-							<a href="{% static 'hotels/rooms/room-with-one-bedroom/"><div class="rooms-list-header">Room with one bedroom</div></a>
+							<a href="{% url  'hotels:room_with_one_bedroom' 1 %}"><div class="rooms-list-header">Room with one bedroom</div></a>
 							<div class="underheader-line"></div>
 							<div class="room-list-parametr">
 								<div id="room-bed">Beds: 1 Kings Bed, 1 Single Bed</div>								<div id="room-person">Max person: <span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span></div>							</div>	
@@ -684,9 +685,9 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<!-- BEGIN MAIN ROOMS WRAP -->
 					<div class="rooms-list-item-wrap">
 						<div class="rooms-list-item-image-wrap">
-							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/room2-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="room2" />							<a href="{% static 'hotels/rooms/family-spacious-room/" class="room-overlay-link"><div class="room-main-list-overlay">
+							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/room2-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="room2" />							<a href="{% url  'hotels:rooms/family-spacious-room/" class="room-overlay-link"><div class="room-main-list-overlay">
 								<div class="room-overlay-content">
-									<a href="{% static 'hotels/rooms/family-spacious-room/"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
+									<a href="{ url  'hotels:rooms/family-spacious-room' }"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
 									<div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span></div>
 								</div>
 								</div></a>
@@ -695,7 +696,7 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 							</div>
 						</div>
 						<div class="rooms-list-content-wrap module-bottom">
-							<a href="{% static 'hotels/rooms/family-spacious-room/"><div class="rooms-list-header">Family Spacious Room</div></a>
+							<a href="{ url  'hotels:rooms/family-spacious-room' }"><div class="rooms-list-header">Family Spacious Room</div></a>
 							<div class="underheader-line"></div>
 							<div class="room-list-parametr">
 								<div id="room-bed">Beds: 1 Queen Bed, 2 Single Beds</div>								<div id="room-person">Max person: <span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span></div>							</div>	
@@ -725,9 +726,9 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<!-- BEGIN MAIN ROOMS WRAP -->
 					<div class="rooms-list-item-wrap">
 						<div class="rooms-list-item-image-wrap">
-							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/room3-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="Cottage dresser with mirror" />							<a href="{% static 'hotels/rooms/2-rooms-appartment/" class="room-overlay-link"><div class="room-main-list-overlay">
+							<img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/room3-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="Cottage dresser with mirror" />							<a href="{% url  'hotels:rooms/2-rooms-appartment/" class="room-overlay-link"><div class="room-main-list-overlay">
 								<div class="room-overlay-content">
-									<a href="{% static 'hotels/rooms/2-rooms-appartment/"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
+									<a href="{ url  'hotels:rooms/2-rooms-appartment' }"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
 									<div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span></div>
 								</div>
 								</div></a>
@@ -736,7 +737,7 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 							</div>
 						</div>
 						<div class="rooms-list-content-wrap module-bottom">
-							<a href="{% static 'hotels/rooms/2-rooms-appartment/"><div class="rooms-list-header">2 Rooms Appartment</div></a>
+							<a href="{ url  'hotels:rooms/2-rooms-appartment' }"><div class="rooms-list-header">2 Rooms Appartment</div></a>
 							<div class="underheader-line"></div>
 							<div class="room-list-parametr">
 								<div id="room-bed">Beds: 1 Queens Bed, 2 Single Bed</div>								<div id="room-person">Max person: <span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span></div>							</div>	
@@ -765,7 +766,7 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 										
 				</div>
 				<div id="show-rooms-main-wrap">
-					<div id="show-rooms-main"><a href="{% static 'hotels/?page_id=69"><span class="icon-star"></span><span>View all rooms</span></a></div>
+					<div id="show-rooms-main"><a href="{ url  'hotels:?page_id=69' }"><span class="icon-star"></span><span>View all rooms</span></a></div>
 					<div style="clear:both"></div>
 				</div>
 							</div>
@@ -839,15 +840,16 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 		{% endblock info %}
 				
 		<!-- BEGIN LOCATION INFO EVENT WRAP -->
+        {% block location_info_event %}
 		<div id="location-wrap">
-			{% block location_info_event %}
+
 			<div class="container">
 				<div class="five columns module">
 					<div class="header-wrap">
 						<span class="header-text"><span class="icon-food"></span> Our restaurant</span>
 					</div>
 					<div id="main-text-widget-wrap">
-						<p><a href="{% static 'hotels/wp-content/uploads/2014/02/IMG_2562.jpg' %}"><img class="alignnone size-full wp-image-496" alt="IMG_2562" src="{% static 'hotels/wp-content/uploads/2014/02/IMG_2562.jpg' %}" width="300" height="149" /></a></p>
+						<p><a href="{% static  'hotels/wp-content/uploads/2014/02/IMG_2562.jpg' %}"><img class="alignnone size-full wp-image-496" alt="IMG_2562" src="{% static 'hotels/wp-content/uploads/2014/02/IMG_2562.jpg' %}" width="300" height="149" /></a></p>
 <p>Curabitur erat nisl, ultrices non velit fermentum at, blandit pretium nisi. Sed auctor mi eu ornare auctor. Aenean cursus lacinia odio, sed viverra ligula varius at.</p>
 <p>Phasellus scelerisque lacus vel orci feugiat, non sagittis orci sollicitudin. Ut ac lectus eu velit etecit.</p>					</div>
 				</div>		
@@ -862,17 +864,17 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<div class="main-blog-posts-wrap">
 						<div class="main-blog-post-wrap">
 							<div class="main-blog-post-image-wrap">
-								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/12/popular-post3.jpg' %}" class="attachment-post-thumbnail" alt="Swimming pool with stair and green relaxing water" />								<a href="{% static 'hotels/2013/12/26/cras-malesuada-pretium/" class="room-overlay-link"><div class="room-main-list-overlay">
+								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/12/popular-post3.jpg' %}" class="attachment-post-thumbnail" alt="Swimming pool with stair and green relaxing water" />								<a href="{% url  'hotels:2013/12/26/cras-malesuada-pretium/" class="room-overlay-link"><div class="room-main-list-overlay">
 									<div class="room-overlay-content">
-										<a href="{% static 'hotels/2013/12/26/cras-malesuada-pretium/"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
+										<a href="{ url  'hotels:2013/12/26/cras-malesuada-pretium' }"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
 									</div>
 								</div></a>
 							</div>
 							<div class="main-blog-post-content-wrap">
-								<div class="main-blog-post-header"><a href="{% static 'hotels/2013/12/26/cras-malesuada-pretium/">Cras malesuada pretium</a></div>
+								<div class="main-blog-post-header"><a href="{ url  'hotels:2013/12/26/cras-malesuada-pretium' }">Cras malesuada pretium</a></div>
 								<div class="main-blog-meta">
 									<div class="main-blog-date">Date: December 26, 2013</div>
-									<!--<div class="main-blog-author">Author: <a href="{% static 'hotels/author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
+									<!--<div class="main-blog-author">Author: <a href="{% url  'hotels:author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
 									<div class="clear"></div>
 								</div>
 								<div class="main-blog-post-content">Etiam luctus malesuada quam eu aliquet. Donec eget mollis tortor. Donec...</div>
@@ -885,17 +887,17 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<div class="main-blog-posts-wrap">
 						<div class="main-blog-post-wrap">
 							<div class="main-blog-post-image-wrap">
-								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/12/thumbnail2.jpg' %}" class="attachment-post-thumbnail" alt="Morning winter calm mountain landscape" />								<a href="{% static 'hotels/2013/12/15/morbi-tincidunt-turpis/" class="room-overlay-link"><div class="room-main-list-overlay">
+								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/12/thumbnail2.jpg' %}" class="attachment-post-thumbnail" alt="Morning winter calm mountain landscape" />								<a href="{% url  'hotels:2013/12/15/morbi-tincidunt-turpis/" class="room-overlay-link"><div class="room-main-list-overlay">
 									<div class="room-overlay-content">
-										<a href="{% static 'hotels/2013/12/15/morbi-tincidunt-turpis/"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
+										<a href="{ url  'hotels:2013/12/15/morbi-tincidunt-turpis' }"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
 									</div>
 								</div></a>
 							</div>
 							<div class="main-blog-post-content-wrap">
-								<div class="main-blog-post-header"><a href="{% static 'hotels/2013/12/15/morbi-tincidunt-turpis/">Morbi tincidunt turpis</a></div>
+								<div class="main-blog-post-header"><a href="{ url  'hotels:2013/12/15/morbi-tincidunt-turpis' }">Morbi tincidunt turpis</a></div>
 								<div class="main-blog-meta">
 									<div class="main-blog-date">Date: December 15, 2013</div>
-									<!--<div class="main-blog-author">Author: <a href="{% static 'hotels/author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
+									<!--<div class="main-blog-author">Author: <a href="{% url  'hotels:author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
 									<div class="clear"></div>
 								</div>
 								<div class="main-blog-post-content">Etiam luctus malesuada quam eu aliquet. Donec eget mollis tortor. Donec...</div>
@@ -908,17 +910,17 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 					<div class="main-blog-posts-wrap">
 						<div class="main-blog-post-wrap">
 							<div class="main-blog-post-image-wrap">
-								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/11/thumbnail3.jpg' %}" class="attachment-post-thumbnail" alt="Winter sport" />								<a href="{% static 'hotels/2013/11/11/eget-placerat-convallis/" class="room-overlay-link"><div class="room-main-list-overlay">
+								<img width="100" height="100" src="{% static 'hotels/wp-content/uploads/2013/11/thumbnail3.jpg' %}" class="attachment-post-thumbnail" alt="Winter sport" />								<a href="{% url  'hotels:2013/11/11/eget-placerat-convallis/" class="room-overlay-link"><div class="room-main-list-overlay">
 									<div class="room-overlay-content">
-										<a href="{% static 'hotels/2013/11/11/eget-placerat-convallis/"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
+										<a href="{ url  'hotels:2013/11/11/eget-placerat-convallis' }"><div class="room-overlay-readmore"><span class="icon-link"></span></div></a>
 									</div>
 								</div></a>
 							</div>
 							<div class="main-blog-post-content-wrap">
-								<div class="main-blog-post-header"><a href="{% static 'hotels/2013/11/11/eget-placerat-convallis/">Eget placerat convallis</a></div>
+								<div class="main-blog-post-header"><a href="{ url  'hotels:2013/11/11/eget-placerat-convallis' }">Eget placerat convallis</a></div>
 								<div class="main-blog-meta">
 									<div class="main-blog-date">Date: November 11, 2013</div>
-									<!--<div class="main-blog-author">Author: <a href="{% static 'hotels/author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
+									<!--<div class="main-blog-author">Author: <a href="{% url  'hotels:author/admin/" title="Posts by John Doe" rel="author">John Doe</a></div> -->
 									<div class="clear"></div>
 								</div>
 								<div class="main-blog-post-content">Etiam luctus malesuada quam eu aliquet. Donec eget mollis tortor. Donec...</div>
@@ -946,9 +948,9 @@ var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
 				<!-- END LOCATIONS WRAP -->
 								
 			</div>
-			{% endblock location_info_event %}
 
 		</div>
+        {% endblock location_info_event %}
 		<!-- END LOCATION INFO EVENT WRAP -->
 			
 	<!-- BEGIN FOOTER -->

@@ -35,7 +35,7 @@ class CalendarInLine(admin.StackedInline):
 
 
 class RoomAdmin(admin.ModelAdmin):
-    fields = ('room_name',)
+    fields = ('room_name','room_description')
     inlines = [CalendarInLine]
     list_display = ['room_name', room_calendar]
 

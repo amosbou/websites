@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hotels/base.html" %}
+{% load staticfiles %}
+{% load hotels_extras %}
+<head>
+    {% block title %}
+     {% endblock title %}
+    {% block reservation_widget %}
+    {% endblock reservation_widget %}
+</head>
+<body>
+{% block rev_slider %}
+{% endblock rev_slider %}
+{% block page_header %}
+   <title>Main Detail</title>
+    <style>
+        #main-title-wrap, #main-title-undertext {
+        text-align:center;
+        }
+    </style>
+
+    <div id="top-content-divider">
+        <div class="container">
+            <div id="main-title-wrap"><span class="icon-calendar"></span> Two Columns Rooms List</div>
+            <div id="main-title-undertext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+        </div>
+    </div>
+{% endblock page_header %}
+{% block content %}
+		<!-- BEGIN PAGE CONTENT -->
+		<div class="container two-item-list">
+
+
+					<!-- BEGIN ROOM WRAP -->
+                    {% for room in rooms_list %}
+					<div class="rooms-list-item-wrap">
+						<div class="rooms-list-item-image-wrap">
+                            {% with room.id|stringformat:"s" as room_id %}
+                                {% with "hotels/wp-content/uploads/2013/12/room"|add:room_id|add:'-500x332.jpg' as hrefPath %}
+    							    <img width="500" height="332" src="{% static hrefPath %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />
+                                {% endwith %}
+                            {% endwith %}
+                            <a href="{% url 'hotels:room_with_one_bedroom' room.id %}" class="room-overlay-link">
+                            <div class="room-main-list-overlay">
+								<div class="room-overlay-content">
+									<a href="{% url 'hotels:room_with_one_bedroom' room.id %}"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
+									<div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span></div>
+								</div>
+								</div></a>
+							<div class="rooms-list-item-price">
+								From <span>$</span>{{ room.room_rate }}								<div class="price-shadow"></div>
+							</div>
+						</div>
+						<div class="rooms-list-content-wrap">
+							<a href="{% url 'hotels:room_with_one_bedroom' room.id %}"><div class="rooms-list-header">{{ room.room_caption }}</div></a>
+							<div class="room-list-parametr">
+								<div id="room-bed">Beds:
+                                    {% if room.room_double_bed_num_of > 0 %}{{ room.room_double_bed_num_of }} {{ room.room_double_bed_size }} Bed{% endif %}
+                                    {% if room.room_single_bed_num_of > 0 %},{{ room.room_single_bed_num_of }} {{ room.room_single_bed_size }} Bed{% endif %}</div>
+								<div id="room-person">Max person: {% for i in room.room_max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}
+                                </div>
+							</div>
+							<div class="rooms-list-content">Morbi at mi in risus venenatis suscipit sed ut ipsum. Nullam massa eros, euismod vestibulum ligula quis, volutpat feugiat lorem. Morbi in quam varius, euismod arcu id, imperdiet diam....</div>
+						</div>
+						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-body">
+
+	<script>
+	(function($) {
+		$(document).ready(function() {
+			$('#nation-calendar-view-2').nationcalendar({
+				calID:{{ room.room_calendar }},
+				beforeShowDay: function (date) {return [false, ''];}
+			});
+		})
+	})(jQuery);
+	</script>
+	<div id="nation-calendar-view-{{ room.room_calendar }}" class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">Close <span class="icon-remove"></span></button>
+							</div>
+						</div>
+					</div>
+					<!-- END ROOM WRAP -->
+                    {% endfor %}
+
+
+
+		</div>
+		<!-- END PAGE CONTENT -->
+
+
+{% endblock content %}
+{% block info %}
+{% endblock info %}
+{% block location_info_event %}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+</body>
+</html>

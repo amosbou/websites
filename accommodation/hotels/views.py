@@ -7,9 +7,9 @@ from hotels.models import Hotel, Room, Calendar
 
 
 def index(request):
-    hotels_list = Hotel.objects.order_by('hotel_city')
+    # rooms_list = Room.objects.order_by('room_name')
 
-    context = {'hotels_list': hotels_list}
+    context = {}
     return render(request, 'hotels/index.html', context)
 
 
@@ -45,6 +45,34 @@ def reservation_form(request, hotel_id, room_id):
         raise Http404
     context = {'hotels_list': hotels_list, 'hotel': hotel, 'room': room}
     return render(request, 'hotels/reservation-form.html', context)
+
+
+def three_rooms_list(request):
+    rooms_list = Room.objects.order_by('room_name')
+
+    context = {'rooms_list': rooms_list}
+    return render(request, 'hotels/three-rooms-list.html', context)
+
+
+def two_columns_rooms_list(request):
+    rooms_list = Room.objects.order_by('room_name')
+
+    context = {'rooms_list': rooms_list}
+    return render(request, 'hotels/two-columns-rooms-list.html', context)
+
+
+def room_with_one_bedroom(request, room_id):
+    room = Room.objects.get(pk=room_id)
+    context = {'room': room}
+    return render(request, 'hotels/three-rooms-list.html', context)
+
+
+def reservation_page_2_2(request):
+    rooms_list = Room.objects.order_by('room_name')
+
+    context = {'rooms_list': rooms_list}
+    return render(request, 'hotels/reservation-page-2-2.html', context)
+
 
 
 
