@@ -36,12 +36,13 @@
 
 					<!-- BEGIN ROOM WRAP -->
                     {% for room in rooms_list %}
+                    {% with room.id|stringformat:"s" as room_id %}
 					<div class="rooms-list-item-wrap">
 						<div class="rooms-list-item-image-wrap">
-                            {% with room.id|stringformat:"s" as room_id %}
-                                {% with "hotels/wp-content/uploads/2013/12/room"|add:room_id|add:'-500x332.jpg' as hrefPath %}
-    							    <img width="500" height="332" src="{% static hrefPath %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />
-                                {% endwith %}
+
+                            {% with "hotels/wp-content/uploads/2013/12/room"|add:room_id|add:'-500x332.jpg' as hrefPath %}
+                                <img width="500" height="332" src="{% static hrefPath %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />
+
                             {% endwith %}
                             <a href="{% url 'hotels:room_with_one_bedroom' room.id %}" class="room-overlay-link">
                             <div class="room-main-list-overlay">
@@ -63,33 +64,49 @@
 								<div id="room-person">Max person: {% for i in room.room_max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}
                                 </div>
 							</div>
-							<div class="rooms-list-content">Morbi at mi in risus venenatis suscipit sed ut ipsum. Nullam massa eros, euismod vestibulum ligula quis, volutpat feugiat lorem. Morbi in quam varius, euismod arcu id, imperdiet diam....</div>
+							<div class="rooms-list-content">{{ room.room_description_short }}</div>
 						</div>
 						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-body">
+                            {% with "nation-calendar-view-"|add:room_id as calendarDivId %}
 
 	<script>
-	(function($) {
-		$(document).ready(function() {
-			$('#nation-calendar-view-2').nationcalendar({
-				calID:{{ room.room_calendar }},
-				beforeShowDay: function (date) {return [false, ''];}
-			});
-		})
-	})(jQuery);
+{% autoescape off %}
+        {% with '"#'|add:calendarDivId|add:'"' as jQuerycalendarDivId %}
+            (function($) {
+                $(document).ready(function() {
+
+                    $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ room.calendar.calendar_data }}});
+
+                })
+            })(jQuery);
+        {% endwith %}
+
 	</script>
-	<div id="nation-calendar-view-{{ room.room_calendar }}" class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>							</div>
+
+
+                                    {% with '"'|add:calendarDivId|add:'"' as calendarDivIdQuote %}
+
+
+                                 <div id={{ calendarDivIdQuote }} class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>
+                                    {% endwith %}
+                                {% endautoescape %}
+                                {% endwith %}
+                            </div>
+
 							<div class="modal-footer">
 								<button class="btn" data-dismiss="modal" aria-hidden="true">Close <span class="icon-remove"></span></button>
 							</div>
 						</div>
 					</div>
+                    {% endwith %}
 					<!-- END ROOM WRAP -->
                     {% endfor %}
 
 
 
 		</div>
+
 		<!-- END PAGE CONTENT -->
 
 

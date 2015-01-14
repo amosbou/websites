@@ -1089,6 +1089,18 @@ $(document).ready(function() {
 		$(this).append("<input type='hidden' name='breakdown' value='"+bdcontent+"'>");
 		
 	});
+	/* Booking PRO Calendars initializing */
+	/*
+	$('#nation-calendar-view-1').DOPFrontendBookingCalendarPRO({'ID': "1","DataURL":"php/load.php"});
+	$('#nation-calendar-view-2').DOPFrontendBookingCalendarPRO({'ID': "2","DataURL":"php/load.php"});
+	$('#frontend3').DOPFrontendBookingCalendarPRO({'ID': "2","DataURL":"php/load.php"});
+	$('#frontend4').DOPFrontendBookingCalendarPRO({'ID': "3","DataURL":"php/load.php"});
+	$('#frontend5').DOPFrontendBookingCalendarPRO({'ID': "4","DataURL":"php/load.php"});
+	$('#frontend6').DOPFrontendBookingCalendarPRO({'ID': "5","DataURL":"php/load.php"});
+	$('#frontend7').DOPFrontendBookingCalendarPRO({'ID': "6","DataURL":"php/load.php"});
+	$('#frontend8').DOPFrontendBookingCalendarPRO({'ID': "7","DataURL":"php/load.php"});
+	$('#frontend9').DOPFrontendBookingCalendarPRO({'ID': "8","DataURL":"php/load.php"});
+	*/
 })
 
 })(window.jQuery);

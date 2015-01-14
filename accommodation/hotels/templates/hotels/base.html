@@ -26,7 +26,9 @@
 <style type='text/css'>
 .tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
 </style>
-<link rel='stylesheet' id='bookingcalendar-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/booking-calendar-pro.css' %}" type='text/css' media='all' />
+<!--<link rel='stylesheet' id='bookingcalendar-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/booking-calendar-pro.css' %}" type='text/css' media='all' />-->
+        <!-- BOOKING CALENDAR STYLE -->
+		<link href="{% static  'hotels/css/booking-calendar-pro.css' %}" rel="stylesheet" media="screen">
 <link rel='stylesheet' id='settings-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/settings.css' %}" type='text/css' media='all' />
 <link rel='stylesheet' id='style-css'  href="{% static  'hotels/wp-content/themes/wpnation/style.css' %}" type='text/css' media='all' />
 <link rel='stylesheet' id='switcher-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/switcher.css' %}" type='text/css' media='all' />
@@ -38,12 +40,14 @@
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/quovolver.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/jflickrfeed.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/retina.js' %}"></script>
+
 <script type='text/javascript'>
 /* <![CDATA[ */
-var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28"};
+var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28", "mapCenter": "123,123"};
 /* ]]> */
 </script>
-<script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/allscript.js' %}"></script>
+<script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/allscript.js' %}"></script> /* important */
+<!--<script type='text/javascript' src="{% static 'hotels/js/allscript.js' %}"></script> /* important */-->
 <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/switcher.js' %}"></script>
 <!--<link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% url  'hotels:xmlrpc.php?rsd" />-->
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static  'hotels/wp-includes/wlwmanifest.xml' %}" />
@@ -1061,10 +1065,15 @@ var bookingOption = {"ajaxurl":"http:\/\/raybreaker-theme.com\/wpnation\/wp-admi
 /* ]]> */
 </script>
 
-<script type='text/javascript' src="{% static 'hotels/wp-content/plugins/nation-booking/includes/js/calendar-script.js' %}"></script>
+<!--<script type='text/javascript' src="{% static 'hotels/wp-content/plugins/nation-booking/includes/js/calendar-script.js' %}"></script>-->
 <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.core.min.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.datepicker.min.js' %}"></script>
 <script type='text/javascript' src="{% static 'hotels/wp-includes/js/comment-reply.min.js' %}"></script>
+
+
+
+        <!-- jQuery BOOKING CALENDAR PRO -->
+	<script type="text/javascript" src="{% static 'hotels/js/jquery.bookingCalendarPRO.js' %}"></script>
 	{% endblock footer_script %}
   </body>
 

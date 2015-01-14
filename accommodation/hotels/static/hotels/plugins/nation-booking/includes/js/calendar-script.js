@@ -3,7 +3,6 @@
 * Includes: jquery.ui.core.js, jquery.ui.datepicker.js
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
-
 (function( $, undefined ) {
 
 var uuid = 0,
@@ -2115,8 +2114,8 @@ $.extend(Datepicker.prototype, {
 						
 						if (!otherMonth) { 	
 							tbody += ( calendarPrice !== false ) ? "<div class='nation-price'>" + bookingOption.currency + calendarPrice +  "</div>" : "" ;
-							tbody += ( calendarAvailty !== false && calendarAvailty !== 0 ) ? "<div class='nation-availty'>" + calendarAvailty + " available" + "</div>" : "" ;
-							tbody +=  ( calendarAvailty === 0 ) ? "<div class='nation-booked'>" + "booked" + "</div>" : "" ;
+							tbody += ( calendarAvailty !== false && calendarAvailty !== 0 ) ? "<div class='nation-availty'>" + calendarAvailty + " " + bookingOption.available + "</div>" : "" ;
+							tbody +=  ( calendarAvailty === 0 ) ? "<div class='nation-booked'>" + bookingOption.booked + "</div>" : "" ;
 						}
 						
 						tbody += "</div></td>"; // display selectable date
@@ -2152,15 +2151,14 @@ $.extend(Datepicker.prototype, {
 		$(".nation-datepicker-initialize .ui-datepicker-inline").css("display","none");
 		
 		calID = $.nationcalendar._get(inst, "calID");
-        //mydata = $.nationcalendar._get(inst, "data");
-        return JSON.parse(calID);
-//		return $.ajax({
-//			type: "POST",
-//			url: bookingOption.ajaxurl,
-//			data: {action: 'nation_booking_get_calendar_data', cal_id: calID, month: month+1, year:year},
-//
-//			async: true
-//		});
+				
+		return $.ajax({
+			type: "POST",
+			url: bookingOption.ajaxurl,
+			data: {action: 'nation_booking_get_calendar_data', cal_id: calID, month: month+1, year:year},
+			
+			async: true
+		});
 	},
 	
 	/* Generate the month and year header. */
@@ -2431,13 +2429,9 @@ $.fn.nationcalendar = function(options){
 	});
 };
 
-
 $.nationcalendar = new Datepicker(); // singleton instance
 $.nationcalendar.initialized = false;
 $.nationcalendar.uuid = new Date().getTime();
 $.nationcalendar.version = "1.10.4";
 
 })(jQuery);
-
-
-

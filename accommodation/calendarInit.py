@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.db import models
 from hotels.models import Hotel, Room, Calendar
 
-calendar = Calendar.objects.get(pk=1)
+calendar = Calendar.objects.get(pk=2)
 calendar.calendar_data = {
     2015-01-01: {available: 2,
                    bind: 0,

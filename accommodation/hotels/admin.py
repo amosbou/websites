@@ -35,7 +35,12 @@ class CalendarInLine(admin.StackedInline):
 
 
 class RoomAdmin(admin.ModelAdmin):
-    fields = ('room_name','room_description')
+    fieldsets = [
+        (None,               {'fields': ['room_name', 'room_caption', 'room_type', 'room_max_num_of_guests',
+                                         'room_description_short', 'room_rate']}),
+        ('Details', {'fields': ['room_double_bed_size', 'room_double_bed_num_of', 'room_single_bed_size',
+                                'room_single_bed_num_of', 'room_description_long'], 'classes': ['collapse']}),
+        ]
     inlines = [CalendarInLine]
     list_display = ['room_name', room_calendar]
 
