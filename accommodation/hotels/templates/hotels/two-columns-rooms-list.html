@@ -5,7 +5,7 @@
 {% load hotels_extras %}
 <head>
     {% block title %}
-     {% endblock title %}
+    {% endblock title %}
     {% block reservation_widget %}
     {% endblock reservation_widget %}
 </head>
@@ -13,7 +13,7 @@
 {% block rev_slider %}
 {% endblock rev_slider %}
 {% block page_header %}
-   <title>Main Detail</title>
+    <title>Main Detail</title>
     <style>
         #main-title-wrap, #main-title-undertext {
         text-align:center;
@@ -68,30 +68,31 @@
 						</div>
 						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-body">
-                            {% with "nation-calendar-view-"|add:room_id as calendarDivId %}
+    {% autoescape off %}
+    {% with "nation-calendar-view-"|add:room_id as calendarDivId %}
 
-	<script>
-{% autoescape off %}
-        {% with '"#'|add:calendarDivId|add:'"' as jQuerycalendarDivId %}
-            (function($) {
-                $(document).ready(function() {
+                                <script>
 
-                    $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ room.calendar.calendar_data }}});
+                                    {% with '"#'|add:calendarDivId|add:'"' as jQuerycalendarDivId %}
+                                        (function($) {
+                                            $(document).ready(function() {
 
-                })
-            })(jQuery);
-        {% endwith %}
+                                                $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ room.calendar.calendar_data }}});
 
-	</script>
-
-
-                                    {% with '"'|add:calendarDivId|add:'"' as calendarDivIdQuote %}
-
-
-                                 <div id={{ calendarDivIdQuote }} class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>
+                                            })
+                                        })(jQuery);
                                     {% endwith %}
-                                {% endautoescape %}
-                                {% endwith %}
+
+                                </script>
+
+
+        {% with '"'|add:calendarDivId|add:'"' as calendarDivIdQuote %}
+
+                                <div id={{ calendarDivIdQuote }} class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>
+        {% endwith %}
+    {% endwith %}
+    {% endautoescape %}
+
                             </div>
 
 							<div class="modal-footer">
@@ -118,5 +119,8 @@
 {% block footer %}
   {{ block.super }}
 {% endblock footer %}
+{% block footer_script %}
+    {{ block.super }}
+{% endblock footer_script %}
 </body>
 </html>

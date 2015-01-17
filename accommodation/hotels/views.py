@@ -64,13 +64,12 @@ def two_columns_rooms_list(request):
 def room_with_one_bedroom(request, room_id):
     room = Room.objects.get(pk=room_id)
     context = {'room': room}
-    return render(request, 'hotels/three-rooms-list.html', context)
+    return render(request, 'hotels/room-with-one-bedroom.html', context)
 
 
-def reservation_page_2_2(request):
-    rooms_list = Room.objects.order_by('room_name')
-
-    context = {'rooms_list': rooms_list}
+def reservation_page_2_2(request, room_id):
+    room = Room.objects.get(pk=room_id)
+    context = {'room': room}
     return render(request, 'hotels/reservation-page-2-2.html', context)
 
 
