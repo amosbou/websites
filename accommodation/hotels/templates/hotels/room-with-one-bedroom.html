@@ -264,46 +264,47 @@
 
 				<div id="room-content">
 					Morbi at mi in risus venenatis suscipit sed ut ipsum. Nullam massa eros, euismod vestibulum ligula quis, volutpat feugiat lorem. Morbi in quam varius, euismod arcu id, imperdiet diam. Aenean vel neque...				</div>
-                    <form id="room-date-form" action="{% url 'hotels:reservation_page_2_2' %}" method="post">
-					<div id="check-in-date-wrap">
-						<input type="text" value="check-in date" name="check-in" id="check-in-date" class="reservation-form-field">
-					</div>
-					<div id="check-out-date-wrap">
-						<input type="text" value="check-out date" name="check-out" id="check-out-date" class="reservation-form-field">
-					</div>
-					<div style="clear:both"></div>
-					<select name="room-adults" id="single-room-adult-selection">
-						<option>No. adults</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-					</select>
-					<select name="room-children" id="single-room-children-selection">
-						<option>No. children</option>
-						<option value="0">0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-					</select>
-					<input type="hidden" value="1" name="room-number">
-					<input type="hidden" value="true" name="from-single-room">
-					<input type="hidden" value="2" name="selected-room">
-					<div class="clear"></div>
-					
-					<button type="submit" id="book-button">Book Now<span class="icon-shopping-cart"></span></button>
-				</form>
-			</div>
-			<div class="clear"></div>
+                    <form id="room-date-form" action="{% url 'hotels:reservation_page' room_id %}" method="post">
+                        {% csrf_token %}
+                        <div id="check-in-date-wrap">
+                            <input type="text" value="check-in date" name="check-in" id="check-in-date" class="reservation-form-field">
+                        </div>
+                        <div id="check-out-date-wrap">
+                            <input type="text" value="check-out date" name="check-out" id="check-out-date" class="reservation-form-field">
+                        </div>
+                        <div style="clear:both"></div>
+                        <select name="room-adults" id="single-room-adult-selection">
+                            <option>No. adults</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        <select name="room-children" id="single-room-children-selection">
+                            <option>No. children</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        <input type="hidden" value="1" name="room-number">
+                        <input type="hidden" value="true" name="from-single-room">
+                        <input type="hidden" value="2" name="selected-room">
+                        <div class="clear"></div>
 
-			<div id="tabs-widget-wrap">
+                        <button type="submit" id="book-button">Book Now<span class="icon-shopping-cart"></span></button>
+				    </form>
+			    </div>
+			    <div class="clear"></div>
+
+			    <div id="tabs-widget-wrap">
 				<ul id="tabs">
 					<li><a href="#" name="#tab1">Description</a></li>
 					<li><a href="#" name="#tab2">Features</a></li>
@@ -374,7 +375,7 @@
                         {% endautoescape %}
                     </div>
 					<div id="tab5">
-							
+
 	<!-- BEGIN BLOG COMMENTS SECTION -->
 		<div style="clear:both"></div>
 	<div class="comment-section">
@@ -443,24 +444,24 @@
 			</div>
              {% endwith %}
 
-		</div>	
-	</div>
-    {% endblock content %}
-	<!-- BEGIN ROOM CONTENT -->
+		    </div>
+	    </div>
+        {% endblock content %}
+	    <!-- BEGIN ROOM CONTENT -->
 			
-	<br /><br />
+	    <br /><br />
 		
-	<!-- END ROOM CONTENT -->
-	{% block info %}
-    {% endblock info %}
-    {% block location_info_event %}
-    {% endblock location_info_event %}
-	<!-- END PAGE CONTENT -->
+        <!-- END ROOM CONTENT -->
+        {% block info %}
+        {% endblock info %}
+        {% block location_info_event %}
+        {% endblock location_info_event %}
+        <!-- END PAGE CONTENT -->
 	
 	
 
 	
-	</div>
+    </div>
 
 	
 

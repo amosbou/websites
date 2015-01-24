@@ -77,7 +77,7 @@
                                         (function($) {
                                             $(document).ready(function() {
 
-                                                $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ room.calendar.calendar_data }}});
+                                                $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ booking_list|get_item:room_id }}});
 
                                             })
                                         })(jQuery);

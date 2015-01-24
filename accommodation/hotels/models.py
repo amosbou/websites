@@ -4,39 +4,44 @@ from django.db import models
 
 
 class Hotel(models.Model):
-    hotel_name = models.CharField(max_length=200)
-    hotel_city = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.hotel_name
+        return self.name
 
 
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel)
-    room_name = models.CharField(max_length=200)
-    room_description_short = models.CharField(max_length=200, default="room short description")
-    room_description_long = models.CharField(max_length=1000, default="room long description")
-    room_caption = models.CharField(max_length=200, default="room caption")
-    room_type = models.CharField(max_length=200, default="room type")
-    room_double_bed_size = models.CharField(max_length=200, default="Double")
-    room_double_bed_num_of = models.IntegerField(default=1)
-    room_single_bed_size = models.CharField(max_length=200, default="Single")
-    room_single_bed_num_of = models.IntegerField(default=1)
-    room_max_num_of_guests = models.IntegerField(default=2)
-    room_rate = models.FloatField(default=100)
-
-
+    name = models.CharField(max_length=200)
+    description_short = models.CharField(max_length=200, default="room short description")
+    description_long = models.CharField(max_length=1000, default="room long description")
+    caption = models.CharField(max_length=200, default="room caption")
+    type = models.CharField(max_length=200, default="room type")
+    double_bed_size = models.CharField(max_length=200, default="Double")
+    double_bed_num_of = models.IntegerField(default=1)
+    single_bed_size = models.CharField(max_length=200, default="Single")
+    single_bed_num_of = models.IntegerField(default=1)
+    max_num_of_guests = models.IntegerField(default=2)
+    rate = models.FloatField(default=100)
 
     def __str__(self):
-        return self.room_name
+        return self.name
 
 
-class Calendar(models.Model):
-    room = models.OneToOneField(Room, primary_key=True)
-    calendar_name = models.CharField(max_length=200, default="calendar name")
-    calendar_data = models.CharField(max_length=1000)
+class Booking(models.Model):
+    room = models.ForeignKey(Room)
+    check_in_date = models.DateField(verbose_name="Check In")
+    check_out_date = models.DateField(verbose_name="Check Out")
+    date_created = models.DateField(verbose_name="Booking Date", auto_now_add=True)
+    time_created = models.DateField(verbose_name="Booking Time", auto_now_add=True)
+
+    # def get_json(self):
+    #     json = "(" + self.booking_check_in_date + ": {available: 0}}"
+    #     return json
 
     def __str__(self):
-        return self.calendar_name
+        return "Check in: " + self.check_in_date.strftime('%d/%m/%Y') + "Check out: " + \
+               self.check_out_date.strftime('%d/%m/%Y')
 
 

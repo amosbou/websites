@@ -10,13 +10,13 @@
 		<!--<meta name="description" content="Just another WordPress site" />-->
 		<!--<link type="image/x-icon" rel="icon" href="{% url  'hotels:wp-content/themes/wpnation/favicon.ico"  /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<!-- GOOGLE WEB FONT -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,800' rel='stylesheet' type='text/css'>
 		
 		<!-- GOOGLE MAPS API -->
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key= AIzaSyCbEJ826CbvSGwFTtO-KTWoowpdn3GxF50&sensor=false"></script>
-				
+
 		<!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Feed" href="{% url  'hotels:feed/" />-->
         <!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Comments Feed" href="{% url  'hotels:comments/feed/" />-->
         <!--<link rel="alternate" type="application/rss+xml" title="Nation Hotel - Responsive WordPress Theme &raquo; Home Page 2 Comments Feed" href="{% url  'hotels:home-page-2/feed/" />-->
@@ -32,7 +32,14 @@
         <link rel='stylesheet' id='settings-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/settings.css' %}" type='text/css' media='all' />
         <link rel='stylesheet' id='style-css'  href="{% static  'hotels/wp-content/themes/wpnation/style.css' %}" type='text/css' media='all' />
         <link rel='stylesheet' id='switcher-css'  href="{% static  'hotels/wp-content/themes/wpnation/css/switcher.css' %}" type='text/css' media='all' />
-        <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/jquery.js' %}"></script>
+
+        <!--<script type='text/javascript' src="{ static 'hotels/wp-includes/js/jquery/jquery.js' }"></script>-->
+        <!----><script src="{% static 'hotels/js/jquery-1.11.2.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
         <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/jquery-migrate.min.js' %}"></script>
         <script type='text/javascript' src="{% static 'hotels/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
         <script type='text/javascript' src="{% static 'hotels/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
@@ -58,7 +65,7 @@
 
 
 
-	<body id="to-top" class="home page page-id-644 page-template page-template-home-page2-php">
+	<body id="to-top" class="home page page-id-644 page-template ">
         {% block body_scripts %}
 		<script type="text/javascript">
 			(function($) {
@@ -178,12 +185,13 @@
                                     <div id="top-phone"><span class="icon-mobile-phone"></span>+1 015 344 343 31</div>
                                     <div id="top-email"><span class="icon-envelope"></span> nationhotel@example.com</div>
                                     <!-- END TOP CONTACT INFO -->
-                                    <a href="{% url  'hotels:reservation-page-2-2/" id="header-reservation-button">Book Now</a>
+                                    <a href="{% url  'hotels:reservation_page' 1 %}" id="header-reservation-button">Book Now</a>
 
 
                                     <div id="top-search"><span class="icon-search"></span>
                                         <div id="top-search-window-wrap">
                                             <form role="search" method="get" id="searchform" class="searchform" action="{% static 'hotels/" >
+                                                {% csrf_token %}
                                                 <div>
                                                     <label class="screen-reader-text" for="s">Search for:</label>
                                                     <input type="text" value="" name="s" id="s" />
@@ -242,7 +250,7 @@
                                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="{% url  'hotels:two_columns_rooms_list' %}">-Rooms 2 Columns</a></li>
                                         <!--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-621"><a href="{ url  'hotels:one-column-rooms-list'  }">-Rooms 1 Columns</a></li>-->
                                         <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-605"><a href="{% url 'hotels:room_with_one_bedroom' 1 %}">-Rooms Single</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% url 'hotels:reservation_page_2_2' %}">-Reservation Page</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% url 'hotels:reservation_page' -1 %}">-Reservation Page</a></li>
                                     </a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-616"><a href="{ url  'hotels:page-with-header-example'}">Pages	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-627"><a href="{ url  'hotels:gallery-page-with-header' }">-Gallery		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-628"><a href="{ url  'hotels:gallery-page-with-header'  }">--With header</a></li>
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-629"><a href="{ url  'hotels:gallery-without-header-page' }">--Without header</a></li>
@@ -279,7 +287,7 @@
     <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:two_columns_rooms_list' %}">Rooms 2 Columns</a></li>
     <!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url 'hotels:one-column-rooms-list'  %}">Rooms 1 Columns</a></li>-->
     <!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{ url 'hotels:room-with-one-bedroom'  %}">Rooms Single</a></li>-->
-    <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:reservation_page_2_2' %}">Reservation Page</a></li>
+    <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:reservation_page' 1 %}">Reservation Page</a></li>
     </ul>
     </li>
     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:page-with-header-example'  }"><div class="top-navigation-content-wrap">Pages<span class="under-title">Template Features</span></div></a>
@@ -362,6 +370,7 @@
                                 <div id="reservation-widget-header">Rates from  <span class="reservation-widget-min-price">$80<span class='divider-space'>/</span>NIGHT</span></div>
                                 <div id="reservation-widget-content">
                                     <form action="{% static 'hotels/reservation-page-2/" method="post" id="reservation-widget-wrap-form-element">
+                                        {% csrf_token %}
                                         <div id="check-in-wrap">
                                             <div class="caption">Check-in date</div>
                                             <input type="text" name="check-in" id="reservation-widget-checkin" value="01/04/2015">
@@ -953,8 +962,30 @@
 					
 					<!-- BEGIN SECOND FOOTER COLUMN -->
 					<div class="five columns">
-						<div class='footer-widget'><div class='footer-header'>Contact Information</div><div id='footer-subscribe-text'>Subscribe to our email newsletter for interesting information and news, sent out every month.</div><div id='mc_embed_signup'><form action=http://themeforest.us5.list-manage1.com/subscribe/post?u=e59a997f59279826537ee067a&id=50f0dafdb1 method='post' id='mc-embedded-subscribe-form' name='mc-embedded-subscribe-form' class='validate' target='_blank' novalidate><input type='email' value='' name='EMAIL' class='email footer-subscribe-email-field' id='mce-EMAIL' placeholder='email address' required><button class='footer-subscribe-button' type='submit' id='mc-embedded-subscribe'>Submit</button></form></div><div id='footer-contact-info-wrap'><div id='footer-email-wrap'><span id='email-title'><span class='icon-envelope-alt'></span>Email:</span> <span id='email-value'>nationhotel@example.com</span><div style='clear:both;'></div></div><div id='footer-phone-wrap'><span id='phone-title'><span class='icon-phone'></span>Telephone:</span> <span id='phone-value'>+1 015 344 343 31</span><div style='clear:both;'></div></div><div id='footer-skype-wrap'><span id='skype-title'><span class='icon-skype'></span>Skype:</span> <span id='skype-value'>hotelnationskype</span><div style='clear:both;'></div></div><div id='footer-address-wrap'><span id='address-title'><span class='icon-compass'></span>Address</span> <span id='address-value'>225 South West 37th St. NY</span><div style='clear:both;'></div></div></div></div><div class='social-wrap-divider'></div>	
-					</div>
+						<div class='footer-widget'>
+                            <div class='footer-header'>Contact Information</div><div id='footer-subscribe-text'>Subscribe to our email newsletter for interesting information and news, sent out every month.</div><div id='mc_embed_signup'>
+                                <form action=http://themeforest.us5.list-manage1.com/subscribe/post?u=e59a997f59279826537ee067a&id=50f0dafdb1 method='post' id='mc-embedded-subscribe-form' name='mc-embedded-subscribe-form' class='validate' target='_blank' novalidate>
+                                    <input type='email' value='' name='EMAIL' class='email footer-subscribe-email-field' id='mce-EMAIL' placeholder='email address' required>
+                                    <button class='footer-subscribe-button' type='submit' id='mc-embedded-subscribe'>Submit</button>
+                                </form>
+                            </div>
+                            <div id='footer-contact-info-wrap'>
+                                <div id='footer-email-wrap'><span id='email-title'><span class='icon-envelope-alt'></span>Email:</span> <span id='email-value'>nationhotel@example.com</span>
+                                    <div style='clear:both;'></div>
+                                </div>
+                                <div id='footer-phone-wrap'><span id='phone-title'><span class='icon-phone'></span>Telephone:</span> <span id='phone-value'>+1 015 344 343 31</span>
+                                    <div style='clear:both;'></div>
+                                </div>
+                                <div id='footer-skype-wrap'><span id='skype-title'><span class='icon-skype'></span>Skype:</span> <span id='skype-value'>hotelnationskype</span>
+                                    <div style='clear:both;'></div>
+                                </div>
+                                <div id='footer-address-wrap'><span id='address-title'><span class='icon-compass'></span>Address</span> <span id='address-value'>225 South West 37th St. NY</span>
+                                    <div style='clear:both;'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='social-wrap-divider'></div>
+                     </div>
 					<!-- END SECOND FOOTER COLUMN -->
 					
 					<!-- BEGIN THIRD FOOTER COLUMN -->
