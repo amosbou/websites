@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from datetime import date, datetime, timedelta
 from hotels.models import Hotel, Room, Booking
 
 import datetime, logging
@@ -16,7 +17,7 @@ def index(request):
 
 
 def accommodation(request, hotel_id):
-    hotels_list = Hotel.objects.order_by('hotel_city')
+    hotels_list = Hotel.objects.order_by('city')
     try:
         hotel = Hotel.objects.get(pk=hotel_id)
     except Hotel.DoesNotExist:
@@ -28,7 +29,7 @@ def accommodation(request, hotel_id):
 
 
 def room_details(request, hotel_id, room_id):
-    hotels_list = Hotel.objects.order_by('hotel_city')
+    hotels_list = Hotel.objects.order_by('city')
     hotel = Hotel.objects.get(pk=hotel_id)
     try:
         room = Room.objects.get(pk=room_id)
@@ -39,49 +40,69 @@ def room_details(request, hotel_id, room_id):
 
 
 def three_rooms_list(request):
-    rooms_list = Room.objects.order_by('room_name')
+    rooms_list = Room.objects.order_by('name')
 
     context = {'rooms_list': rooms_list}
     return render(request, 'hotels/three-rooms-list.html', context)
 
 
+def perdelta(start, end, delta):
+    curr = start
+    while curr < end:
+        yield curr
+        curr += delta
+
+
 def two_columns_rooms_list(request):
 
-    rooms_list = Room.objects.order_by('room_name')
+    rooms_list = Room.objects.order_by('name')
     booking_list = {}
 
     for room in rooms_list:
-        booking_set = room.booking_set.filter(booking_check_out_date__gte=datetime.date.today())
-        # booking_set = room.booking_set.filter(room_id=room.id)
         booking_list_per_room = {}
+        for available_date in perdelta(datetime.date.today(), datetime.date.today() + datetime.timedelta(days=365),
+                                       timedelta(days=1)):
+            # print result
+            # for i in range(365):
+            #
+            #  Day status (none, available, booked, special, unavailable)
+            booking_list_per_room[available_date.strftime('%Y-%m-%d')] = {'available': '1',
+                                                                          'info': 'Available to book',
+                                                                          'promo': '',
+                                                                          'bind': 0, 'notes': 'These are the notes',
+                                                                          'status': 'available',
+                                                                          'price': room.rate + 20}
+        #     available_date += datetime.timedelta(days=1)
+        booking_set = room.booking_set.filter(check_out_date__gte=datetime.date.today())
+        # booking_set = room.booking_set.filter(room_id=room.id)
         for booking in booking_set:
-            booking_list_per_room[booking.booking_check_in_date.strftime('%Y-%m-%d')] = {'available': '0',
+            booking_list_per_room[booking.check_in_date.strftime('%Y-%m-%d')] = {'available': '0',
                                                                                    'info': 'check_in',
                                                                                    'promo': '',
-                                                                                   'bind': 0,
+                                                                                   'bind': 1,
                                                                                    'notes': '',
-                                                                                   'status': 'available',
-                                                                                   'price': room.room_rate}
-            booking_list_per_room[booking.booking_check_out_date.strftime('%Y-%m-%d')] = {'available': '0',
+                                                                                   'status': 'booked',
+                                                                                   'price': room.rate}
+            booking_list_per_room[booking.check_out_date.strftime('%Y-%m-%d')] = {'available': '0',
                                                                                     'info': 'check_out',
                                                                                     'promo': '',
-                                                                                    'bind': 0,
+                                                                                    'bind': 3,
                                                                                     'notes': '',
-                                                                                    'status': 'available',
-                                                                                    'price': room.room_rate + 10}
-            numberOfNights = booking.booking_check_out_date - booking.booking_check_in_date
-            in_date = booking.booking_check_in_date
+                                                                                    'status': 'booked',
+                                                                                    'price': room.rate + 10}
+            numberOfNights = booking.check_out_date - booking.check_in_date
+            in_date = booking.check_in_date
             for i in range(numberOfNights.days - 1):
                 in_date += datetime.timedelta(days=1)
                 booking_list_per_room[in_date.strftime('%Y-%m-%d')] = {'available': '0',
                                                                                         'info': '',
                                                                                         'promo': '',
-                                                                                        'bind': 0, 'notes': '',
-                                                                                        'status': 'available',
-                                                                                        'price': room.room_rate + 20}
+                                                                                        'bind': 2, 'notes': '',
+                                                                                        'status': 'booked',
+                                                                                        'price': room.rate + 20}
 
-            print(booking.booking_check_in_date)
-            print(booking.booking_check_out_date)
+            print(booking.check_in_date)
+            print(booking.check_out_date)
 
         booking_list[str(room.id)] = booking_list_per_room
         print(booking_list)
