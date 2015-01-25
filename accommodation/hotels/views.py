@@ -46,7 +46,7 @@ def three_rooms_list(request):
     return render(request, 'hotels/three-rooms-list.html', context)
 
 
-def perdelta(start, end, delta):
+def date_range_generator(start, end, delta):
     curr = start
     while curr < end:
         yield curr
@@ -60,19 +60,18 @@ def two_columns_rooms_list(request):
 
     for room in rooms_list:
         booking_list_per_room = {}
-        for available_date in perdelta(datetime.date.today(), datetime.date.today() + datetime.timedelta(days=365),
-                                       timedelta(days=1)):
-            # print result
-            # for i in range(365):
-            #
-            #  Day status (none, available, booked, special, unavailable)
-            booking_list_per_room[available_date.strftime('%Y-%m-%d')] = {'available': '1',
-                                                                          'info': 'Available to book',
-                                                                          'promo': '',
-                                                                          'bind': 0, 'notes': 'These are the notes',
-                                                                          'status': 'available',
-                                                                          'price': room.rate + 20}
-        #     available_date += datetime.timedelta(days=1)
+        # for available_date in date_range_generator(datetime.date.today(),
+        #                                            datetime.date.today() + datetime.timedelta(days=365),
+        #                                            timedelta(days=1)):
+        #
+        #     #  Day status (none, available, booked, special, unavailable)
+        #     booking_list_per_room[available_date.strftime('%Y-%m-%d')] = {'available': '1',
+        #                                                                   'info': 'Available to book',
+        #                                                                   'promo': '',
+        #                                                                   'bind': 0, 'notes': 'These are the notes',
+        #                                                                   'status': 'available',
+        #                                                                   'price': room.rate + 20}
+
         booking_set = room.booking_set.filter(check_out_date__gte=datetime.date.today())
         # booking_set = room.booking_set.filter(room_id=room.id)
         for booking in booking_set:
