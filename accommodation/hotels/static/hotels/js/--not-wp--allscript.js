@@ -986,9 +986,9 @@ $(document).ready(function() {
 			monthb = padNumber(dateArray[i].getMonth() + 1);
             dayb = padNumber(dateArray[i].getDate());
 			// This depends on the datepicker's date format
-			if ( nationOption.dateformat == "european" ) {
+			if ( bookingOption.dateformat == "european" ) {
 				dateArray[i] = dayb + "-" + monthb + "-" + yearb;
-			} else if ( nationOption.dateformat == "american" ) {
+			} else if ( bookingOption.dateformat == "american" ) {
 				dateArray[i] = monthb + "/" + dayb + "/" + yearb;
 			}
 		}

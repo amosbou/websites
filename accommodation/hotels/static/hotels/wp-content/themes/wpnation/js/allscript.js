@@ -804,6 +804,15 @@ $(document).ready(function() {
 	
 	
 	/* Reservation Page Scripts */
+    if(bookingOption.dateformat == "european"){
+        var DateFormatString = "dd-mm-yy";
+
+    }else if ( bookingOption.dateformat == "american" ) {
+       var DateFormatString = "mm/dd/yy";
+
+    } else {
+        var DateFormatString = "dd/mm/yy";
+    }
 	
 	// Room Number Selection 
 	$("#room-number-selection").change(function(){
@@ -864,13 +873,16 @@ $(document).ready(function() {
 		
 		var yearb, monthb, dayb;
 		
-		for (var i=0;i<dateArray.length;i++) {
+        for (var i=0;i<dateArray.length;i++) {
 			yearb = dateArray[i].getFullYear();
 			monthb = padNumber(dateArray[i].getMonth() + 1);
             dayb = padNumber(dateArray[i].getDate());
 			// This depends on the datepicker's date format
+
             dateArray[i] = monthb + "/" + dayb + "/" + yearb;
+
 		}
+
 		
 		return dateArray;
 	}
@@ -887,13 +899,30 @@ $(document).ready(function() {
 		selectOtherMonths: true, 
 		nextText: '<span class="icon-chevron-right"></span>', 
 		prevText: '<span class="icon-chevron-left"></span>',
-		
+
+
 		onSelect: function(dateText, inst) { 
 			addOrRemoveDate(dateText); 
 			if (dates.length==2) {
-				datesBetween = getDates(new Date(dates[0]),new Date(dates[1]));	
-				$("#check-in-date").val(dates[0]);
-				$("#check-out-date").val(dates[1]);
+
+			    var startDate = new Date(dates[0]);
+
+			    var endDate = new Date(dates[1]);
+
+				datesBetween = getDates(startDate,endDate);
+				var startdateString = ''
+				var enddateString = ''
+			    // This depends on the datepicker's date format
+			    if ( bookingOption.dateformat == "european" ) {
+				    startdateString = padNumber(startDate.getDate()) + "-" + padNumber(startDate.getMonth() + 1) + "-" + startDate.getFullYear();
+				    enddateString = padNumber(endDate.getDate()) + "-" + padNumber(endDate.getMonth() + 1) + "-" + endDate.getFullYear();
+			    } else if ( bookingOption.dateformat == "american" ) {
+				    startdateString = padNumber(startDate.getMonth() + 1) + "/" + padNumber(startDate.getDate()) + "/" + startDate.getFullYear();
+				    enddateString = padNumber(endDate.getMonth() + 1) + "/" + padNumber(endDate.getDate()) + "/" + endDate.getFullYear();
+			    }
+               	$("#check-in-date").val(startdateString);
+
+				$("#check-out-date").val(enddateString);
 			}
 		},
 		
@@ -903,7 +932,10 @@ $(document).ready(function() {
             var month = padNumber(date.getMonth() + 1);
             var day = padNumber(date.getDate());
 			// This depends on the datepicker's date format
+
             var dateString = month + "/" + day + "/" + year;
+
+
 
             var gotDate = jQuery.inArray(dateString, dates);
             if (gotDate >= 0) {
@@ -984,6 +1016,7 @@ $(document).ready(function() {
 		nextText: '<span class="icon-chevron-sign-right"></span>',
 		prevText: '<span class="icon-chevron-sign-left"></span>',
 		minDate: dateToday,
+		dateFormat: DateFormatString,
 		beforeShow: function(input, inst) {
 			$('#ui-datepicker-div').addClass('resend-datepicker');
 		}
@@ -993,6 +1026,7 @@ $(document).ready(function() {
 		nextText: '<span class="icon-chevron-sign-right"></span>',
 		prevText: '<span class="icon-chevron-sign-left"></span>',
 		minDate: dateToday,
+		dateFormat: DateFormatString,
 		beforeShow: function(input, inst) {
 			$('#ui-datepicker-div').addClass('resend-datepicker');
 		}

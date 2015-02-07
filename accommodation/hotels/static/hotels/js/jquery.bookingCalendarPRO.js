@@ -24,7 +24,7 @@
                     'DataURL': 'dopbcp/php-file/load.php', // URL from were JSON data is loaded.
                     'DateEndLabel': 'End Date', // Form label for End Date.
                     'DateStartLabel': 'Start Date', // Form label for Start Date.
-                    'DateType': 1, // Form date display type (1 = American, 2 = European)
+                    'DateType': 2, // Form date display type (1 = American, 2 = European)
                     'DayNames': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // Weekdays long names.
                     'DayShortNames': ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], // Weekdays short names.
                     'FirstDay': 1, // Set the first day of the week (1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday, 7 = Sunday)
@@ -570,7 +570,7 @@
                                 "notes": "",
                                 "price": "", 
                                 "promo": "",
-                                "status": AvailableDays[day] ? "none":"unavailable"}
+                                "status": AvailableDays[day] ? "available":"unavailable"}
                     },  
                     rpDays:function(){
                         var maxHeight = 0,
@@ -2246,7 +2246,7 @@
                                 "notes": "",
                                 "price": "", 
                                 "promo": "",
-                                "status": AvailableDays[day] ? "none":"unavailable"}
+                                "status": AvailableDays[day] ? "available":"unavailable"}
                     },
                     rpDays:function(){
                         var maxHeight = 0,

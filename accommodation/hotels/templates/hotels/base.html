@@ -51,7 +51,8 @@
         <script type='text/javascript'>
         /* <![CDATA[ */
         var nationOption = {"menuColor":"#586670","primaryColor":"#c73d28", "mapCenter": "123,123"};
-        /* ]]> */
+        var bookingOption =  {"dateformat":"european","currency":"£"};
+         /* ]]> */
         </script>
         <script type='text/javascript' src="{% static 'hotels/wp-content/themes/wpnation/js/allscript.js' %}"></script> /* important */
         <!--<script type='text/javascript' src="{% static 'hotels/js/allscript.js' %}"></script> /* important */-->
@@ -185,7 +186,7 @@
                                     <div id="top-phone"><span class="icon-mobile-phone"></span>+1 015 344 343 31</div>
                                     <div id="top-email"><span class="icon-envelope"></span> nationhotel@example.com</div>
                                     <!-- END TOP CONTACT INFO -->
-                                    <a href="{% url  'hotels:reservation_page' 1 %}" id="header-reservation-button">Book Now</a>
+                                    <a href="{% url  'hotels:choose_date_page' %}" id="header-reservation-button">Book Now</a>
 
 
                                     <div id="top-search"><span class="icon-search"></span>
@@ -250,7 +251,7 @@
                                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="{% url  'hotels:two_columns_rooms_list' %}">-Rooms 2 Columns</a></li>
                                         <!--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-621"><a href="{ url  'hotels:one-column-rooms-list'  }">-Rooms 1 Columns</a></li>-->
                                         <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-605"><a href="{% url 'hotels:room_with_one_bedroom' 1 %}">-Rooms Single</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% url 'hotels:reservation_page' -1 %}">-Reservation Page</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-641"><a href="{% url 'hotels:choose_date_page' %}">-Reservation Page</a></li>
                                     </a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-616"><a href="{ url  'hotels:page-with-header-example'}">Pages	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-627"><a href="{ url  'hotels:gallery-page-with-header' }">-Gallery		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-628"><a href="{ url  'hotels:gallery-page-with-header'  }">--With header</a></li>
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-629"><a href="{ url  'hotels:gallery-without-header-page' }">--Without header</a></li>
@@ -287,7 +288,7 @@
     <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:two_columns_rooms_list' %}">Rooms 2 Columns</a></li>
     <!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{ url 'hotels:one-column-rooms-list'  %}">Rooms 1 Columns</a></li>-->
     <!--<li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{ url 'hotels:room-with-one-bedroom'  %}">Rooms Single</a></li>-->
-    <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:reservation_page' 1 %}">Reservation Page</a></li>
+    <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:choose_date_page' %}">Reservation Page</a></li>
     </ul>
     </li>
     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{ url  'hotels:page-with-header-example'  }"><div class="top-navigation-content-wrap">Pages<span class="under-title">Template Features</span></div></a>
@@ -1048,15 +1049,10 @@
         </script>
 
         <script type='text/javascript' src="{% static 'hotels/wp-content/plugins/contact-form-7/includes/js/scripts.js' %}"></script>
-        <script type='text/javascript'>
-        /* <![CDATA[ */
-        var bookingOption = {"ajaxurl":"http:\/\/raybreaker-theme.com\/wpnation\/wp-admin\/admin-ajax.php","currency":"$"};
-        /* ]]> */
-        </script>
 
         <!--<script type='text/javascript' src="{% static 'hotels/wp-content/plugins/nation-booking/includes/js/calendar-script.js' %}"></script>-->
         <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.core.min.js' %}"></script>
-        <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.datepicker.min.js' %}"></script>
+        <!-- <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.datepicker.min.js' %}"></script>-->
         <script type='text/javascript' src="{% static 'hotels/wp-includes/js/comment-reply.min.js' %}"></script>
 
         <!-- jQuery BOOKING CALENDAR PRO -->

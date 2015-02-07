@@ -48,7 +48,7 @@
 {% block step_left %}
                 <!-- BEGIN STEP 2 RESERVATION FORM -->
 								<!-- BEGIN STEP 1 RESERVATION FORM -->
-			<form method="POST" id="reservation-step1-form">
+			<form method="POST" id="reservation-step1-form" action="{% url 'hotels:choose_room_page' %}">
                 {% csrf_token %}
 				<div class="five columns step1 alpha">
 					<div id="reservation-info">
@@ -319,10 +319,17 @@
 				<div class="eleven columns reservation-content page-left-sidebar">
 					<div id="reservation-data-selection"></div>
 					<input type="hidden" value="" name="Date" id="Date" />
+                    <input type="hidden" value=""  name="dateformat" id="dateformat" />
 					<button type="submit" id="reservation-step1-button">Check Availability</button>
 				</div>
 
 			</form>
+			<script type='text/javascript'>
+
+
+            var inputDateFormat = document.getElementById("dateformat");
+            inputDateFormat.value = bookingOption.dateformat;
+            </script>
 			<!-- END STEP 1 RESERVATION FORM -->
 
 {% endblock step_left %}

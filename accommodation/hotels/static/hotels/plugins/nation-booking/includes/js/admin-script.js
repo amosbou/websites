@@ -51,6 +51,7 @@
 		
 		
 		$("#select-calendar-price").change(function(){
+
 			$.post(ajaxurl, {action: 'nation_show_calendar', cal_id: $(this).val()}, function(data){
 				$("#show-price-calendar").html(data);
 			});

@@ -248,23 +248,23 @@
 
 
 			<div class="room-content-description">
-				<h3>{{ room.room_caption }}</h3>
+				<h3>{{ room.caption }}</h3>
 				<div id="room-content-price">
-					from <span id='room-price'><span>$</span>{{ room.room_rate }}</span><span id='per-day'> /night</span>
+					from <span id='room-price'><span>$</span>{{ room.rate }}</span><span id='per-day'> /night</span>
                 </div>
                     <div id="room-parametr">
 
-                        <div id="room-person">Max person: {% for i in room.room_max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}</div>
+                        <div id="room-person">Max person: {% for i in room.max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}</div>
                             ,&nbsp;&nbsp;&nbsp;
 
                         <div id="room-bed">Room bed:&nbsp;
-                        {% if room.room_double_bed_num_of > 0 %}{{ room.room_double_bed_num_of }} {{ room.room_double_bed_size }} Bed{% endif %}
-                        {% if room.room_single_bed_num_of > 0 %}, {{ room.room_single_bed_num_of }} {{ room.room_single_bed_size }} Bed{% endif %}</div>
+                        {% if room.double_bed_num_of > 0 %}{{ room.double_bed_num_of }} {{ room.double_bed_size }} Bed{% endif %}
+                        {% if room.single_bed_num_of > 0 %}, {{ room.single_bed_num_of }} {{ room.single_bed_size }} Bed{% endif %}</div>
                     </div>
 
 				<div id="room-content">
 					Morbi at mi in risus venenatis suscipit sed ut ipsum. Nullam massa eros, euismod vestibulum ligula quis, volutpat feugiat lorem. Morbi in quam varius, euismod arcu id, imperdiet diam. Aenean vel neque...				</div>
-                    <form id="room-date-form" action="{% url 'hotels:reservation_page' room_id %}" method="post">
+                    <form id="room-date-form" action="{% url 'hotels:choose_room_page' room_id %}" method="post">
                         {% csrf_token %}
                         <div id="check-in-date-wrap">
                             <input type="text" value="check-in date" name="check-in" id="check-in-date" class="reservation-form-field">
