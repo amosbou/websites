@@ -128,16 +128,25 @@ def choose_room_page(request, room_id="-1"):
     print(" room_id " + room_id)
     check_in = False
     check_out = False
+    check_out = False
+    adults = False
+    children = False
     if 'check-in' in request.POST and request.POST['check-in']:
         check_in = request.POST['check-in']
         context['check_in'] = check_in
     if 'check-out' in request.POST and request.POST['check-out']:
         check_out = request.POST['check-out']
         context['check_out'] = check_out
+    if 'adults' in request.POST and request.POST['adults']:
+        adults = request.POST['adults']
+        context['adults'] = adults
+    if 'children' in request.POST and request.POST['children']:
+        children = request.POST['children']
+        context['children'] = children
 
     if room_id == "-1":
         # no room selected yet. Look for available rooms
-        print('check_out ' + check_out)
+        print('check_in: ' + check_in + ' check_out: ' + check_out)
         dateformat = request.POST['dateformat']
         if dateformat == 'european':
             # format is dd-mm-yy
@@ -152,15 +161,26 @@ def choose_room_page(request, room_id="-1"):
             fields = check_out.split('-')
             check_out_date = fields[2] + '-' + fields[0] + '-' + fields[1]
 
-        booking_set = Booking.objects.filter(Q(check_out_date__lte=check_in_date) | Q(check_in_date__gte=check_out_date))
-        print(booking_set)
-        rooms = []
-        for booking in booking_set:
-            room = booking.room
-            rooms.append(room)
-            print('room ' + room.__str__() + ' booking ' + booking.__str__())
+        # loop through the room to find all the rrom that are available in the selected user dates
+        available_rooms = []
+        for room in Room.objects.all():
+            # if the requested user booking period overlaps/intersects with an existing booking period for a room,
+            # that room is then unavailable
+            booking_set = room.booking_set.filter((Q(check_out_date__gt=check_in_date)
+                                                  & Q(check_out_date__lte=check_out_date))
+                                                  | (Q(check_in_date__gte=check_in_date)
+                                                     & Q(check_in_date__lt=check_out_date)))
+            if booking_set.count() > 0:
+                # there is an overlap/intersections with an existing booking period
+                # the room with that booking is not available and therefore we skip it.
+                continue
+            # no intersection of the requested booking with any existing booking periods.
+            # Therefore the room is available
+            print('room ' + room.__str__())
+            # add the room to the list of available rooms
+            available_rooms.append(room)
 
-        context['rooms'] = rooms
+        context['available_rooms'] = available_rooms
 
 
 
@@ -175,6 +195,13 @@ def choose_room_page(request, room_id="-1"):
         return render(request, 'hotels/reservation-page-choose-room.html', context)
 
     return render(request, 'hotels/reservation-page-choose-date.html', context)
+
+
+def checkout(request, room_id):
+    room = Room.objects.get(pk=room_id)
+    context = {}
+    context['room'] = room
+    return render(request, 'hotels/reservation-page-checkout.html', context)
 
 
 

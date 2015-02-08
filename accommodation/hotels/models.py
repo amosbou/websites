@@ -36,12 +36,17 @@ class Booking(models.Model):
     date_created = models.DateField(verbose_name="Booking Date", auto_now_add=True)
     time_created = models.DateField(verbose_name="Booking Time", auto_now_add=True)
 
-    # def get_json(self):
-    #     json = "(" + self.booking_check_in_date + ": {available: 0}}"
-    #     return json
+    def __str__(self):
+        return "Check in: " + self.check_in_date.strftime('%d/%m/%Y') + " Check out: " + \
+               self.check_out_date.strftime('%d/%m/%Y')
+
+
+class Settings(models.Model):
+    date_format = models.CharField(max_length=12, default="dd/mm/yy")
+    currency = models.CharField(max_length=3, default=u"\u00A3")
 
     def __str__(self):
-        return "Check in: " + self.check_in_date.strftime('%d/%m/%Y') + "Check out: " + \
-               self.check_out_date.strftime('%d/%m/%Y')
+        return "Date Format: " + self.date_format\
+               + "\nCurrency: " + self.currency
 
 
