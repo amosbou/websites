@@ -238,14 +238,14 @@
                             <div class="three columns" id="top-logo-wrap">
 
                                 <!-- MAIN LOGO -->
-                                <a href="{% static 'hotels' %}"><img src="{% static 'hotels/wp-content/uploads/2014/02/main-logo-1.png' %}" id="main-logo" /><img src="{% static 'hotels/wp-content/uploads/2014/02/main-logo-small1.png' %}" id="main-logo-min" /></a>
+                                <a href="{% url 'hotels:index' %}"><img src="{% static 'hotels/wp-content/uploads/2014/02/main-logo-1.png' %}" id="main-logo" /><img src="{% static 'hotels/wp-content/uploads/2014/02/main-logo-small1.png' %}" id="main-logo-min" /></a>
 
                             </div>
 
                             <div class="thirteen columns" id="top-navigation-menu-wrap">
 
                                 <!-- BEGIN MAIN MOBILE NAVIGATION -->
-                                <ul id="mobile-navigation-menu"><li><span class="icon-reorder"></span><ul id="mobile-navigation-menu-list"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-611"><a href="{% static 'hotels">Home</a></li>
+                                <ul id="mobile-navigation-menu"><li><span class="icon-reorder"></span><ul id="mobile-navigation-menu-list"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-611"><a href="{% url 'hotels:index' %}">Home</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-618"><a href="{% url 'hotels:three_rooms_list' %}">Reservation</a>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-619"><a href="{% url 'hotels:three_rooms_list' %}">-Rooms 3 Columns</a></li>
                                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="{% url  'hotels:two_columns_rooms_list' %}">-Rooms 2 Columns</a></li>
@@ -282,7 +282,7 @@
 
                                 <!-- BEGIN MAIN NAVIGATION -->
                                 <ul id="top-navigation-menu" class="dropdown menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home"><a href="{% url 'hotels:index' %}"><div class="top-navigation-content-wrap">Home<span class="under-title">Site homepage</span></div></a></li>
-    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% url 'hotels:three_rooms_list' %}{% static 'hotels/three-rooms-list' %}"><div class="top-navigation-content-wrap">Reservation<span class="under-title">Book your room online</span></div></a>
+    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="{% url 'hotels:three_rooms_list' %}"><div class="top-navigation-content-wrap">Reservation<span class="under-title">Book your room online</span></div></a>
     <ul class='sub_menu'>
     <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:three_rooms_list' %}">Rooms</a></li>
     <li class='submenu-arrow-wrap'><div class='top-submenu-arrow'></div></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'hotels:two_columns_rooms_list' %}">Rooms 2 Columns</a></li>
@@ -329,7 +329,7 @@
                                 <!-- END MAIN NAVIGATION -->
                             {% block reservation_widget %}
 
-                                                            <script>
+                            <script>
                                     (function($) {
                                         var dateToday = new Date();
 
@@ -338,6 +338,7 @@
                                                 nextText: '<span class="icon-chevron-sign-right"></span>',
                                                 prevText: '<span class="icon-chevron-sign-left"></span>',
                                                 minDate: dateToday,
+                                                dateFormat: "dd-mm-yy",
                                                 beforeShow: function() {
                                                     $('#ui-datepicker-div').addClass('reservation-widget-datepicker');
                                                 }
@@ -346,6 +347,7 @@
                                                 nextText: '<span class="icon-chevron-sign-right"></span>',
                                                 prevText: '<span class="icon-chevron-sign-left"></span>',
                                                 minDate: dateToday,
+                                                dateFormat: "dd-mm-yy",
                                                 beforeShow: function() {
                                                     $('#ui-datepicker-div').addClass('reservation-widget-datepicker');
                                                 }
@@ -370,7 +372,7 @@
                             <div id="reservation-widget-wrap">
                                 <div id="reservation-widget-header">Rates from  <span class="reservation-widget-min-price">$80<span class='divider-space'>/</span>NIGHT</span></div>
                                 <div id="reservation-widget-content">
-                                    <form action="{% static 'hotels/reservation-page-2/" method="post" id="reservation-widget-wrap-form-element">
+                                    <form action="{% url 'hotels:choose_room_page' %}" method="post" id="reservation-widget-wrap-form-element">
                                         {% csrf_token %}
                                         <div id="check-in-wrap">
                                             <div class="caption">Check-in date</div>
@@ -397,6 +399,11 @@
                                             <option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>											</select>
                                         </div>
                                         <div style="clear:both;"></div>
+                                        <input type="hidden" value=""  name="dateformat" id="dateformat" />
+                                            <script type='text/javascript'>
+                                                var inputDateFormat = document.getElementById("dateformat");
+                                                inputDateFormat.value = bookingOption.dateformat;
+                                            </script>
                                         <input type="submit" id="submit-button" value="Online Reservation">
                                     </form>
                                 </div>
@@ -671,68 +678,7 @@
             {% endblock page_header %}
 
             {% block content %}
-            <div id="room-view-wrap" class="main-rooms-list">
-                <div class="container">
-                    <div id="main-news-header">Check our comfortable rooms</div>
-                    <div id="main-news-subheader"><p>Hover your mouse on one of images below and then click on calendar icon to check room's availability or magnifier icon to learn more about this room or reserve it online</p></div>	
-                    <div id="room-view-content">
-                    <!-- BEGIN MAIN ROOMS WRAP -->
-                        <div class="rooms-list-item-wrap">
-                            <div class="rooms-list-item-image-wrap">
-                                <img width="375" height="249" src="{% static 'hotels/wp-content/uploads/2013/12/room1-375x249.jpg' %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />
-                                <a href="{% url  'hotels:room_with_one_bedroom' 1 %}" class="room-overlay-link">
-                                <div class="room-main-list-overlay">
-                                    <div class="room-overlay-content">
-                                        <a href="{% url  'hotels:room_with_one_bedroom' 1 %}">
-                                            <div class="room-overlay-readmore"><span class="icon-search"></span></div>
-                                        </a>
-                                        <div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                                <div class="rooms-list-item-price">
-                                    From <span>$</span>120
-                                    <div class="price-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="rooms-list-content-wrap module-bottom">
-                                <a href="{% url  'hotels:room_with_one_bedroom' 1 %}">
-                                    <div class="rooms-list-header">Room with one bedroom</div>
-                                </a>
-                                <div class="underheader-line"></div>
-                                <div class="room-list-parametr">
-                                    <div id="room-bed">Beds: 1 Kings Bed, 1 Single Bed</div>
-                                    <div id="room-person">Max person: <span class='icon-male'></span><span class='icon-male'></span><span class='icon-male'></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">							
-                                <div class="modal-body">
-                                        
-
-	                                <div id="nation-calendar-view-2" class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>
-                                </div>
-							    <div class="modal-footer">
-								    <button class="btn" data-dismiss="modal" aria-hidden="true">Close <span class="icon-remove"></span></button>
-							    </div>
-						    </div>
-					    </div>
-					<!-- END MAIN ROOMS WRAP -->
-				    </div>
-    				<div id="show-rooms-main-wrap">
-					<div id="show-rooms-main"><a href="{ url  'hotels:?page_id=69'  }"><span class="icon-star"></span><span>View all rooms</span></a></div>
-					<div style="clear:both"></div>
-				</div>
-                </div>
-		    </div>
-            (function($) {
-            $(document).ready(function() {
-                $('#nation-calendar-view-2').DOPFrontendBookingCalendarPRO({'ID': 2,"DataURL":"ttttt"});
-
-            })
-            })(jQuery);
-        {% endblock content %}
+            {% endblock content %}
 
 		<!-- BEGIN MAIN ROOM VIEW -->
 		{% block info %}
@@ -1050,12 +996,12 @@
 
         <script type='text/javascript' src="{% static 'hotels/wp-content/plugins/contact-form-7/includes/js/scripts.js' %}"></script>
 
-        <!--<script type='text/javascript' src="{% static 'hotels/wp-content/plugins/nation-booking/includes/js/calendar-script.js' %}"></script>-->
+        <!--**<script type='text/javascript' src="{% static 'hotels/wp-content/plugins/nation-booking/includes/js/calendar-script.js' %}"></script>-->
         <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.core.min.js' %}"></script>
-        <!-- <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.datepicker.min.js' %}"></script>-->
+        <!--** <script type='text/javascript' src="{% static 'hotels/wp-includes/js/jquery/ui/jquery.ui.datepicker.min.js' %}"></script>-->
         <script type='text/javascript' src="{% static 'hotels/wp-includes/js/comment-reply.min.js' %}"></script>
 
-        <!-- jQuery BOOKING CALENDAR PRO -->
+        <!--** jQuery BOOKING CALENDAR PRO -->
         <script type="text/javascript" src="{% static 'hotels/js/jquery.bookingCalendarPRO.js' %}"></script>
 	{% endblock footer_script %}
 

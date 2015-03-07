@@ -2,10 +2,44 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 {% extends "hotels/base.html" %}
 {% load staticfiles %}
+{% load hotels_extras %}
 <head>
 	{% block title %}
 	<title>Main Detail</title>
     {% endblock %}
 </head>
 <body>
+    {% block content %}
+        <div id="room-view-wrap" class="main-rooms-list">
+            <div class="container">
+                <div id="main-news-header">Check our comfortable rooms</div>
+                <div id="main-news-subheader"><p>Hover your mouse on one of images below and then click on calendar icon to check room's availability or magnifier icon to learn more about this room or reserve it online</p></div>
+                <div id="room-view-content">
+                {% for room in rooms_list %}
+                {% include "hotels/room-wrap.html"%}
+                {% endfor %}
+                </div>
+                <div id="show-rooms-main-wrap">
+                    <div id="show-rooms-main"><a href="{% url  'hotels:index_all_rooms'  %}"><span class="icon-star"></span><span>View all rooms</span></a></div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock content %}
+{% block info %}
+    {{ block.super }}
+{% endblock info %}
+{% block location_info_event %}
+    {{ block.super }}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+{% block footer_script %}
+    {{ block.super }}
+{% endblock footer_script %}
+
+
 </body>
+</html>

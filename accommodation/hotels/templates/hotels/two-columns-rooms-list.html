@@ -10,9 +10,14 @@
     {% endblock reservation_widget %}
 </head>
 <body>
-{% block rev_slider %}
-{% endblock rev_slider %}
-{% block page_header %}
+    {% block header %}
+       {{ block.super }}
+    {% endblock header %}
+
+    {% block rev_slider %}
+    {% endblock rev_slider %}
+
+    {% block page_header %}
     <title>Main Detail</title>
     <style>
         #main-title-wrap, #main-title-undertext {
@@ -32,79 +37,9 @@
 {% block content %}
 		<!-- BEGIN PAGE CONTENT -->
 		<div class="container two-item-list">
-
-
-					<!-- BEGIN ROOM WRAP -->
-                    {% for room in rooms_list %}
-                    {% with room.id|stringformat:"s" as room_id %}
-					<div class="rooms-list-item-wrap">
-						<div class="rooms-list-item-image-wrap">
-
-                            {% with "hotels/wp-content/uploads/2013/12/room"|add:room_id|add:'-500x332.jpg' as hrefPath %}
-                                <img width="500" height="332" src="{% static hrefPath %}" class="rooms-list-image wp-post-image" alt="Bedroom with comfortable bed" />
-
-                            {% endwith %}
-                            <a href="{% url 'hotels:room_with_one_bedroom' room.id %}" class="room-overlay-link">
-                            <div class="room-main-list-overlay">
-								<div class="room-overlay-content">
-									<a href="{% url 'hotels:room_with_one_bedroom' room.id %}"><div class="room-overlay-readmore"><span class="icon-search"></span></div></a>
-									<div class="room-overlay-checkavail overlay-checkavail2" id="room-main-one"><span class="icon-calendar"></span></div>
-								</div>
-								</div></a>
-							<div class="rooms-list-item-price">
-								From <span>$</span>{{ room.rate }}								<div class="price-shadow"></div>
-							</div>
-						</div>
-						<div class="rooms-list-content-wrap">
-							<a href="{% url 'hotels:room_with_one_bedroom' room.id %}"><div class="rooms-list-header">{{ room.caption }}</div></a>
-							<div class="room-list-parametr">
-								<div id="room-bed">Beds:
-                                    {% if room.double_bed_num_of > 0 %}{{ room.double_bed_num_of }} {{ room.double_bed_size }} Bed{% endif %}
-                                    {% if room.single_bed_num_of > 0 %},{{ room.single_bed_num_of }} {{ room.single_bed_size }} Bed{% endif %}</div>
-								<div id="room-person">Max person: {% for i in room.max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}
-                                </div>
-							</div>
-							<div class="rooms-list-content">{{ room.description_short }}</div>
-						</div>
-						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-body">
-    {% autoescape off %}
-    {% with "nation-calendar-view-"|add:room_id as calendarDivId %}
-
-                                <script>
-
-                                    {% with '"#'|add:calendarDivId|add:'"' as jQuerycalendarDivId %}
-                                        (function($) {
-                                            $(document).ready(function() {
-
-                                                $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ booking_list|get_item:room_id }}});
-
-                                            })
-                                        })(jQuery);
-                                    {% endwith %}
-
-                                </script>
-
-
-        {% with '"'|add:calendarDivId|add:'"' as calendarDivIdQuote %}
-
-                                <div id={{ calendarDivIdQuote }} class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span></div>
-        {% endwith %}
-    {% endwith %}
-    {% endautoescape %}
-
-                            </div>
-
-							<div class="modal-footer">
-								<button class="btn" data-dismiss="modal" aria-hidden="true">Close <span class="icon-remove"></span></button>
-							</div>
-						</div>
-					</div>
-                    {% endwith %}
-					<!-- END ROOM WRAP -->
-                    {% endfor %}
-
-
+            {% for room in rooms_list %}
+            {% include "hotels/room-wrap.html" %}
+            {% endfor %}
 
 		</div>
 

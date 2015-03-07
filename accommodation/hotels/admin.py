@@ -3,12 +3,12 @@ from django.contrib import admin
 # Register your models here.
 
 from django.contrib import admin
-from hotels.models import Hotel, Room, Booking
+from hotels.models import Hotel, Room, Booking, Guest, Address, GuestAddress, AddressType, Country
 
 
 class RoomInline(admin.StackedInline):
     model = Room
-    extra = 1
+    extra = 0
 
 
 class HotelAdmin(admin.ModelAdmin):
@@ -22,9 +22,11 @@ class HotelAdmin(admin.ModelAdmin):
 
 admin.site.register(Hotel, HotelAdmin)
 
-class BookingInline(admin.StackedInline):
+
+class BookingInline(admin.TabularInline):
     model = Booking
-    extra = 1
+    extra = 0
+
 
 class RoomAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -34,19 +36,54 @@ class RoomAdmin(admin.ModelAdmin):
                                 'single_bed_num_of', 'description_long'], 'classes': ['collapse']}),
         ]
     inlines = [BookingInline]
-    list_display = ['name', 'description_short']
+    # list_display = ['name', 'description_short']
 
 
 admin.site.register(Room, RoomAdmin)
 
 
+class GuestInline(admin.StackedInline):
+    model = Guest
+    extra = 0
+
+
 class BookingAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['check_in_date', 'check_out_date']}),
+        (None,               {'fields': ['room', 'check_in_date', 'check_out_date']}),
         ('Details', {'fields': ['date_created', 'time_created'], 'classes': ['collapse']}),
         ]
-    # inlines = [CalendarInLine]
-    list_display = ['check_in_date', 'check_out_date']
+    readonly_fields = ('date_created', 'time_created')
+    list_display = ['check_in_date', 'check_out_date', 'room', 'guest']
+    date_hierarchy = 'check_in_date'
 
 
 admin.site.register(Booking, BookingAdmin)
+
+
+class AddressInline(admin.StackedInline):
+    model = Address
+    extra = 0
+
+
+class GuestAddressInline(admin.StackedInline):
+    model = GuestAddress
+    extra = 0
+
+
+class GuestAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['first_name', 'last_name']})
+    ]
+    inlines = [BookingInline, GuestAddressInline]
+
+
+admin.site.register(Guest, GuestAdmin)
+
+
+class AddressAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['address', 'city','zipcode', 'country']})
+    ]
+
+
+admin.site.register(Address, AddressAdmin)

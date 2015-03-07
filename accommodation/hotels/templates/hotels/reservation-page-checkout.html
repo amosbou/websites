@@ -46,29 +46,31 @@
 
 
 						<!-- BEGIN STEP 3 RESERVATION FORM -->
+            {% with room.id|stringformat:"s" as room_id %}
 			<div class="five columns step3 alpha">
 				<div id="reservation-info" class="step3-reservation-info">
 					<div id="reservation-info-header"><span class="icon-shopping-cart"></span>Your Booking</div>
 					<div id="reservation-info-content">
 						<div id="reservation-check-in">
 							<div>Check-in</div>
-							<div class="reservation-date-value">02/09/2015</div>
+							<div class="reservation-date-value">{{ check_in }}</div>
 						</div>
 						<div id="reservation-check-out">
 							<div>Check-out</div>
-							<div class="reservation-date-value">02/16/2015</div>
+							<div class="reservation-date-value">{{ check_out }}</div>
 						</div>
 						<div class="clear"></div>
+
 						<div id="reservation-room-type">
 							<div>Selected Room</div>
-							<div class="reservation-room-value">Room with one bedroom</div>
+							<div class="reservation-room-value">{{ room.description_short }}</div>
 						</div>
 						<div id="reservation-guests">
 							<div>Guests</div>
 							<div id="room-rent-number" style="display:none">1</div>
 														<div class="room-guests-wrap" id="room-guests-wrap1">
 
-									Room 1: Adults: 3, Children: 1
+									Room {{ room_id }}: Adults: {{ adults }}, Children: {{ children }}
 															</div>
 													</div>
 
@@ -105,9 +107,10 @@
 					</div>
 				</div>
 			</div>
-            {% with room.id|stringformat:"s" as room_id %}
+
 			<div class="eleven columns reservation-content page-left-sidebar step3">
-				<form id="step3-form" method="post">
+				<form id="step3-form" action="{% url 'hotels:payment' %}" method="post">
+                    {% csrf_token %}
 					<div id="personal-reservation-form-wrap">
 						<h5>Personal Info</h5>
 						<div id="required-desc"><span class="main-reservation-form-asterisk">*</span> Indicated required fields.</div>
@@ -147,11 +150,23 @@
 					<div id="payment-method-selections">
 						<div class="resform-header">Select payment method <span class="main-reservation-form-asterisk">*</span></div>
 						<div id="radio-buttons-wrap">
-							<div><input type="radio" name="payments_method" value="paypal"><img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" style="margin-left:6px;margin-right:6px;"><span style="font-size:12px; font-family: Arial, Verdana;">The safer, easier way to pay.</span></div>
-							<div><input type="radio" name="payments_method" value="creditcard"><span id='credit-card-text'>Pay with &nbsp; <img class="creditcard-images" src="http://raybreaker-theme.com/wpnation/wp-content/themes/wpnation/images/american-express.png"> <img class="creditcard-images" src="http://raybreaker-theme.com/wpnation/wp-content/themes/wpnation/images/mastercard.png"> <img class="creditcard-images" src="http://raybreaker-theme.com/wpnation/wp-content/themes/wpnation/images/visa.png"> &nbsp; on arrival</span></div>
+							<div>
+                                <input type="radio" name="payments_method" value="paypal">
+                                <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" style="margin-left:6px;margin-right:6px;">
+                                <span style="font-size:12px; font-family: Arial, Verdana;">The safer, easier way to pay.</span>
+                            </div>
+							<div>
+                                <input type="radio" name="payments_method" value="creditcard">
+                                <span id='credit-card-text'>Pay with &nbsp;
+                                    <img class="creditcard-images" src="{% static 'hotels/wp-content/themes/wpnation/images/american-express.png' %}">
+                                    <img class="creditcard-images" src="{% static 'hotels/wp-content/themes/wpnation/images/mastercard.png' %}">
+                                    <img class="creditcard-images" src="{% static 'hotels/wp-content/themes/wpnation/images/visa.png' %}">
+                                    &nbsp; on arrival
+                                </span>
+                            </div>
 						</div>
 					</div>
-										<div id="payment-reservation-form">
+                    <div id="payment-reservation-form">
 						<h5>Payment Info</h5>
 						<div id="payment-desc"><p>To guarantee your booking, we need a valid credit card. We have the right to cancel your booking if you're credit card is not valid. Your credit cart will be charged after we review your booking request.</p></div>
 
@@ -208,16 +223,20 @@
 
 						<div id="resform-confirmation" class="form-field-wrap">
 							<p><b>Cancellations:</b> You may cancel your reservation the day prior to arrival</p>
-<p><b>Credit Card:</b> We will not accept any reservations without proper credit card guarantee.</p>							<input type="submit" value="Confirm Reservation" id="reservation-step3-button">
+                            <p><b>Credit Card:</b> We will not accept any reservations without proper credit card guarantee.</p>
+                            <input type="hidden" name="method" value="credit card">
+                           <input type="submit" value="Confirm Reservation" id="reservation-step3-button">
 						</div>
 					</div>
 
 					<div id="paypal-payment-reservation-form">
-						<br><button type="submit"><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button>
+						<br>
+                        <input type="hidden" name="method" value="paypal">
+                        <button type="submit"><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button>
 					</div>
 
 					<input type="hidden" name="tax-amount" value="58.8">
-										<input type="hidden" name="adult-room1" value="3">
+                    <input type="hidden" name="adult-room1" value="3">
 					<input type="hidden" name="child-room1" value="1">
 
 				</form>
