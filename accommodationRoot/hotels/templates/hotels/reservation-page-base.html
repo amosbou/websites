@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hotels/base.html" %}
+{% load staticfiles %}
+{% load hotels_extras %}
+<head>
+    {% block title %}
+    {% endblock title %}
+    {% block reservation_widget %}
+    {% endblock reservation_widget %}
+</head>
+<body>
+{% block rev_slider %}
+{% endblock rev_slider %}
+{% block page_header %}
+<!-- BEGIN PAGE TITLE -->
+
+<style>
+</style>
+
+<div id="top-content-divider">
+    <div class="container">
+        <div id="main-title-wrap"> Reservation Page</div>
+    </div>
+</div>
+
+<!-- END PAGE TITLE -->
+
+{% endblock page_header %}
+{% block content %}
+		<!-- BEGIN PAGE CONTENT -->
+		<div class="container reservation-page-main-wrap">
+{% block reservation_stages %}
+			<div id="reservation-breadcrumb-wrap" class="container">
+				<div >1. Choose Date <span class="icon-angle-right"></span></div>
+				<div id='active'>2. Choose Room <span class="icon-angle-right"></span></div>
+				<div >3. Checkout <span class="icon-angle-right"></span></div>
+				<div >4. Confirmation</div>
+			</div>
+
+{% endblock reservation_stages %}
+
+{% block step_left %}
+{% endblock step_left %}
+
+{% block step_right %}
+{% endblock step_right %}
+
+		</div>
+        <!-- END PAGE CONTENT -->
+
+
+{% endblock content %}
+{% block info %}
+{% endblock info %}
+{% block location_info_event %}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hotels/base.html" %}
+{% load staticfiles %}
+{% load hotels_extras %}
+<head>
+    {% block title %}
+     {% endblock title %}
+    {% block reservation_widget %}
+    {% endblock reservation_widget %}
+</head>
+<body>
+{% block rev_slider %}
+{% endblock rev_slider %}
+{% block page_header %}
+<!-- BEGIN PAGE TITLE -->
+   <title>Room Detail</title>
+    <style>
+   </style>
+
+
+
+		<div id="top-content-divider">
+			<div class="container">
+				<div id="main-title-wrap"><span class="icon-star"></span> Room with one bedroom </div>
+								<div id="main-title-undertext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+							</div>
+		</div>
+
+			<!-- END PAGE TITLE -->
+
+
+
+
+
+{% endblock page_header %}
+{% block content %}
+		<!-- BEGIN PAGE CONTENT -->
+	<!-- BEGIN PAGE CONTENT -->
+	<div class="container reservation-page-wrap">
+		<div class="sixteen columns">
+			<br />
+			<!-- BEGIN RESERVATION PAGE SLIDER -->
+			<div class="bannercontainer" >
+				<div class="reservation-page-slider" >
+					<ul>
+						<!-- FIRST SLIDE -->
+						<li data-transition='fade' data-masterspeed='300' data-slideindex='back'><img width="680" height="400" src="{% static 'hotels/content/uploads/2013/12/room-slider331.jpg' %}" class="attachment-post-thumbnail" alt="Bedroom with comfortable bed" /></li>
+                        <li data-transition='fade' data-masterspeed='300' data-slideindex='back'><img width="680" height="400" src="{% static 'hotels/content/uploads/2013/12/3-rooms-appartment1.jpg' %}" class="attachment-post-thumbnail" alt="Hotel room" />
+                        </li>
+                    </ul>
+					<div class="tp-bannertimer tp-bottom"></div>
+				</div>
+			</div>
+			<!-- END RESERVATION PAGE SLIDER -->
+        {% with room.id|stringformat:"s" as room_id %}
+            {% with '"'|add:room_id|add:'"' as room_id_Quote %}
+
+            {% autoescape off %}
+            <div class="room-content-description">
+				<h3>{{ room.room_name }}</h3>
+				<div id="room-content-price">
+					from <span id='room-price'><span>$</span>{{ room.room_rate }}</span><span id='per-day'> /night</span>
+                </div>
+                <div id="room-parametr">
+                    <div id="room-person">Max person: {% for i in room.room_max_num_of_guests|get_range %}<span class='icon-male'></span>{% endfor %}
+                    </div>
+                    <div id="room-content">{{ room.room_description_short }}
+                    </div>
+                    <form id="room-date-form" action="{% url 'hotels:reservation_page_2_2' %}" method="post">
+                        <div id="check-in-date-wrap">
+                            <input type="text" value="check-in date" name="check-in" id="check-in-date" class="reservation-form-field">
+                        </div>
+                        <div id="check-out-date-wrap">
+                            <input type="text" value="check-out date" name="check-out" id="check-out-date" class="reservation-form-field">
+                        </div>
+                        <div style="clear:both"></div>
+                        <select name="room-adults" id="single-room-adult-selection">
+                            <option>No. adults</option>
+                            {% for i in room.room_max_num_of_guests|get_range %}
+                                {% with i|stringformat:"s" as iString %}
+                                    {% with '"'|add:iString|add:'"' as iQuote %}
+                                        <option value={{ iQuote }}>{{ i }}</option>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                        </select>
+                        <select name="room-children" id="single-room-children-selection">
+                            <option>No. children</option>
+                            {% for i in room.room_max_num_of_guests|get_range %}
+                                {% with i|stringformat:"s" as iString %}
+                                    {% with '"'|add:iString|add:'"' as iQuote %}
+                                        <option value={{ iQuote }}>{{ i }}</option>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" value={{ room_id_Quote }} name="room-number">
+                        <input type="hidden" value="true" name="from-single-room">
+                        <input type="hidden" value={{ room_id_Quote }} name="selected-room">
+                        <div class="clear"></div>
+
+                        <button type="submit" id="book-button">Book Now<span class="icon-shopping-cart"></span></button>
+                    </form>
+                </div>
+                <div class="clear"></div>
+
+                <div id="tabs-widget-wrap">
+                    <ul id="tabs">
+                        <li><a href="#" name="#tab1">Description</a></li>
+                        <li><a href="#" name="#tab2">Features</a></li>
+                        <li><a href="#" name="#tab3">Policies</a></li>
+                        <li><a href="#" name="#tab4">Availability</a></li>
+                        <li><a href="#" name="#tab5">Reviews (2) </a></li>
+                    </ul>
+                    <div id="tabs-content">
+                        <div id="tab1">
+                            <p>Sed sollicitudin euismod nulla at consequat. Quisque sed risus at id adipiscing, consectetur turpis vehicula, hendrerit felis. Integer nec ultricies urna. Suspendisse nec eleifend quam, quis adipiscing enim. Quisque rhoncus velit ut magna venenatis, sed volutpat nulla consequat. Duis sit amet semper eros. Morbi ullamcorper leo leo, et varius massa aliquam non. Sed eu neque convallis, vehicula orci a, viverra odio. Phasellus consectetur facilisis nulla. Aenean sagittis, nisi non ornare sagittis, nunc magna sodales est, vel pretium enim lacus quis nulla.</p>
+                        </div>
+                        <div id="tab2">
+                            <div id="room-features">
+                                <ul class="room-features-list">
+                                    <li><span class="icon-star"></span> Free Wi-Fi Internet inside rooms</li>
+                                    <li><span class="icon-star"></span> Free Room Services</li>
+                                    <li><span class="icon-star"></span> Breakfast included</li>
+                                    <li><span class="icon-star"></span> Beautiful view on the city</li>
+                                    <li><span class="icon-star"></span> Free Airport Pickup</li>
+                                    <li><span class="icon-star"></span> Free parking near hotel</li>
+                                    <li><span class="icon-star"></span> Satelite and Cable TV Included</li>
+                                    <li><span class="icon-star"></span> Air Conditioning</li>
+                                    <li><span class="icon-star"></span> Personal Safe</li>
+                                    <li><span class="icon-star"></span> Refrigerator</li>
+                                </ul>
+                                <div style="clear:both;">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab3">
+                            <div class='accordion-widget accordion'>
+                                <div class='accordion-header '><a href='#'><span class='icon-plus'></span>Check-in</a></div><div class='accordion-content '>
+                                    From 15:00 hours
+                                </div>
+                                <div class='accordion-header '><a href='#'><span class='icon-plus'></span>Check-out</a></div><div class='accordion-content '>
+                                    Until 12:00 hours
+                                </div>
+                                <div class='accordion-header '><a href='#'><span class='icon-plus'></span>Cancellation / Prepayment</a></div><div class='accordion-content '>
+                                    Cancellation and prepayment policies vary according to room type. Please email to us to learn more about it.
+                                </div>
+
+                                <div class='accordion-header '><a href='#'><span class='icon-plus'></span>Pets</a>
+                                </div>
+                                <div class='accordion-content '>
+
+                                    Pets are allowed but charges may be applicable.
+                                </div>
+
+                                <div class='accordion-header '><a href='#'><span class='icon-plus'></span>Groups</a>
+                                </div>
+                                <div class='accordion-content '>
+
+                                    When booking more than 5 rooms, different policies and additional supplements may apply.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="tab4">
+        {% with "nation-calendar-view-"|add:room_id as calendarDivId %}
+
+        <script>
+
+            {% with '"#'|add:calendarDivId|add:'"' as jQuerycalendarDivId %}
+                (function($) {
+                    $(document).ready(function() {
+
+                        $({{ jQuerycalendarDivId }}).DOPFrontendBookingCalendarPRO({'ID': {{ room_id }},"DataURL":{{ room.calendar.calendar_data }}});
+
+                    })
+                })(jQuery);
+            {% endwith %}
+
+        </script>
+                        {% with '"'|add:calendarDivId|add:'"' as calendarDivIdQuote %}
+                        <div id={{ calendarDivIdQuote }} class="nation-datepicker-initialize"><span class="calendar-loading">&nbsp;</span>
+                        </div>
+                       {% endwith %}
+       {% endwith %}
+                     </div>
+                        <div id="tab5">
+
+        <!-- BEGIN BLOG COMMENTS SECTION -->
+                            <div style="clear:both"></div>
+                            <div class="comment-section">
+                               <div class="comment-wrap reply-0">
+                                    <img alt='' src='http://1.gravatar.com/avatar/1aedb8d9dc4751e229a335e371db8058?s=100&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D100&amp;r=G' class='avatar avatar-100 photo' height='100' width='100' />
+                                    <div class="comment-author">
+                                        John Doe says:
+                                    </div>
+
+                                    <div class="comment-text">
+                                        <p>One of the best hotel I ever visited!</p>
+
+                                    </div>
+                                    <div class="comment-meta">
+                                        <div class="comment-data">February 6, 2014 at 10:01 am</div>
+                                        <div class="comment-reply-link"></div>
+                                    </div>
+                                    <div style="clear:both"></div>
+
+
+                                </div>
+
+
+                                <div class="comment-wrap reply-0">
+                                    <img alt='' src='http://1.gravatar.com/avatar/30051fe9ebac2140f632725b5951b50a?s=100&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D100&amp;r=G' class='avatar avatar-100 photo' height='100' width='100' />
+                                    <div class="comment-author">
+                                        Royal says:
+                                    </div>
+
+                                    <div class="comment-text">
+                                        <p>Hi, Nation Theme Team</p>
+
+                                    </div>
+                                    <div class="comment-meta">
+                                        <div class="comment-data">October 25, 2014 at 4:28 am</div>
+                                        <div class="comment-reply-link"></div>
+                                    </div>
+                                    <div style="clear:both"></div>
+
+
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+        <!-- END BLOG COMMENTS SECTION -->
+
+        <!-- BEGIN POST COMMENTS FORM -->
+                            <div id="respond" class="comment-respond">
+                                <h3 id="reply-title" class="comment-reply-title">Leave a Review <small><a rel="nofollow" id="cancel-comment-reply-link" href="/wpnation/rooms/room-with-one-bedroom/#respond" style="display:none;">Cancel reply</a></small></h3>
+                                <form action="http://raybreaker-theme.com/wpnation/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+                                    <div id="comment-field-name-wrap">
+                                        <label for="name-comments-field">Name *</label>
+                                        <input type="text" id="name-comments-field" name="author" value="enter name">
+                                    </div>
+                                    <div id="comment-field-email-wrap">
+                                        <label for="email-comments-field">Email *</label>
+                                        <input type="text" id="email-comments-field" name="email" value="enter email">
+                                    </div>
+                                    <div style="clear:both">
+
+                                    </div>
+                                    <label for="text-comments-field">Message *</label>
+                                    <textarea id="text-comments-field" name="comment">enter comment text here</textarea>
+                                    <button type="submit" id="submit-button">Post Comment <span class="icon-envelope"></span>
+                                    </button>
+                                    <p class="form-submit">
+                                        <input name="submit" type="submit" id="submit-button" value="Post Comment" />
+                                        <input type='hidden' name='comment_post_ID' value='37' id='comment_post_ID' />
+                                        <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+                                    </p>
+                                </form>
+                            </div><!-- #respond -->
+                        </div>
+    <!-- END POST COMMENTS FORM -->
+                    </div>
+			</div>
+		    </div>
+            {% endautoescape %}
+            {% endwith %}
+        {% endwith %}
+
+	    </div>
+
+	<!-- BEGIN ROOM CONTENT -->
+
+	<br /><br />
+
+	<!-- END ROOM CONTENT -->
+</div>
+	<!-- END PAGE CONTENT -->
+{% endblock content %}
+{% block info %}
+{% endblock info %}
+{% block location_info_event %}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+</body>
+</html>

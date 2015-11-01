@@ -1,0 +1,34 @@
+{% load staticfiles %}
+{% load hotels_extras %}
+{% with nights_rates_breakdown|get_item:room.id as nights_rates_breakdown_this_room %}
+{% with nights_rates_breakdown_this_room|get_keys as nights_rates_breakdown_dates %}
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-body">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Price</th>
+            </tr>
+
+            {% for every_night_date in nights_rates_breakdown_dates %}
+
+            <tr class='breakdown-content'>
+                <td>{{ every_night_date }}</td>
+                <td>${{ nights_rates_breakdown_this_room|get_item:every_night_date }}</td>
+            </tr>
+            {% endfor %}
+            {% with total_price_for_room|get_item:room.id as total_price_this_room %}
+            <tr>
+                <td id="modal-total">Total: </td>
+                <td id="modal-price-total">${{ total_price_this_room }}</td>
+            </tr>
+            {% endwith %}
+
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close <span class="icon-remove"></span></button>
+    </div>
+</div>
+{% endwith %}
+{% endwith %}

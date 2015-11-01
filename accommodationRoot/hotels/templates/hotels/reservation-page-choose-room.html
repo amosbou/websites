@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hotels/reservation-page-base.html" %}
+{% load staticfiles %}
+{% load hotels_extras %}
+<head>
+    {% block title %}
+    {% endblock title %}
+    {% block reservation_widget %}
+    {% endblock reservation_widget %}
+</head>
+<body>
+{% block rev_slider %}
+{% endblock rev_slider %}
+{% block page_header %}
+<!-- BEGIN PAGE TITLE -->
+
+<style>
+</style>
+
+<div id="top-content-divider">
+    <div class="container">
+        <div id="main-title-wrap"> Reservation Page</div>
+    </div>
+</div>
+
+<!-- END PAGE TITLE -->
+
+{% endblock page_header %}
+{% block content %}
+
+		<!-- BEGIN PAGE CONTENT -->
+		<div class="container reservation-page-main-wrap">
+{% block reservation_stages %}
+    {{ block.super }}
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $("#reservation-breadcrumb-wrap").children().removeAttr('id');
+                $("#reservation-breadcrumb-wrap").children('div:nth-child(2)').attr('id','active')
+
+            })
+        })(jQuery);
+    </script>
+{% endblock reservation_stages %}
+
+
+{% block step_left %}
+                <!-- BEGIN STEP 2 RESERVATION FORM -->
+				<div class="five columns step2 alpha">
+							<div id="reservation-info" class="step2-reservation-info">
+								<div id="reservation-info-header"><span class="icon-shopping-cart"></span>Your Booking1</div>
+								<div id="reservation-info-content">
+									<div id="reservation-check-in">
+										<div>Check-in</div>
+										<div class="reservation-date-value">{{ check_in }}</div>
+									</div>
+									<div id="reservation-check-out">
+										<div>Check-out</div>
+										<div class="reservation-date-value">{{ check_out }}</div>
+									</div>
+									<div class="clear"></div>
+									<div id="reservation-guests">
+										<div>Guests</div>
+
+
+										<div class="room-guests-wrap" id="room-guests-wrap1">
+											Adults: <span class='adult'>{{ adults }}</span>, Children: <span class='children'>{{ children }}</span>
+										</div>
+
+									</div>
+									<div id="edit-reservation">Edit Reservation</div>
+								</div>
+							</div>
+
+							<form id="resend-step2" action="{% url 'hotels:choose_room_page' %}" method="POST">
+                        {% csrf_token %}
+						<div id="reservation-info">
+							<div id="reservation-info-header"><span class="icon-shopping-cart"></span>Your Booking2</div>
+
+							<div id="reservation-info-content">
+								<div id="reservation-check-in">
+									<div>Check-in</div>
+									<input type="text" placeholder="check-in date" id="check-in-date" name="check-in" class="reservation-form-field" readonly="true">
+ 								</div>
+								<div id="reservation-check-out">
+									<div>Check-out</div>
+									<input type="text" placeholder="check-out date" id="check-out-date" name="check-out" class="reservation-form-field" readonly="true">
+								</div>
+								<div class="clear"></div>
+
+								<div id="reservation-room">
+
+								</div>
+
+                                <div id="room-guest" >
+									<div class="reservation-room-adults" name="adults-number">
+										<div>Adults</div>							<select name="adults">
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																					</select>
+									</div>
+									<div class="reservation-room-children" name="children-number">
+										<div>Children</div>							<select name="children">
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																					</select>
+									</div>
+								</div>
+                                <input type="hidden" value=""  name="dateformat" id="dateformat" />
+                                <script type='text/javascript'>
+                                    var inputDateFormat = document.getElementById("dateformat");
+                                    inputDateFormat.value = bookingOption.dateformat;
+                                </script>
+
+                                <button id="resend-submit" type="submit">Apply Changes</button>
+								<div id="cancel-resend-button">Cancel</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+{% endblock step_left %}
+
+{% block step_right %}
+				<div class="eleven columns reservation-content page-left-sidebar step2">
+					<h4>The room that you selected:</h4>
+                    <div class='reservation-room-wrap'>
+                    {% for room in available_rooms %}
+
+                        {% with room.id|stringformat:"s" as room_id %}
+                           {% with "hotels/content/uploads/2013/12/room"|add:room_id|add:'-375x249.jpg' as hrefPath %}
+							<form class="room-reservation-wrap" action="{% url 'hotels:checkout' room_id %}" method="post">
+                                {% csrf_token %}
+                     			<img width="375" height="249" src="{% static hrefPath %}" class="reservation-list-image wp-post-image" alt="{{ room.description_short }}" />
+                                <div class="room-reservation-title">{{ room.description_short }}</div>
+								<input name="room-title" type="hidden" value="{{ room.description_short }}" />
+								<input name="adults" type="hidden" value="{{ adults }}" />
+								<input name="children" type="hidden" value="{{ children }}" />
+                                {% with total_price_for_room|get_item:room.id as total_price_this_room %}
+                                    <input name="total_price" type="hidden" value="{{ total_price_this_room }}" />
+                                {% endwith %}								<!--<input name="room-id" type="hidden" value="{{ room_id }}">-->
+								<div class="room-reservation-description">{{ room.description_long }}</div>
+                                <input type="hidden" value=""  name="dateformat" id="dateformat" />
+                                <script type='text/javascript'>
+                                    var inputDateFormat = document.getElementById("dateformat");
+                                    inputDateFormat.value = bookingOption.dateformat;
+                                </script>
+			                    <button type="submit" class="room-reservation-select">Select Room</button>
+								<div class="room-reservation-price">
+
+										<div>
+									    	<span>from</span> &pound;{{ min_rate|get_item:room.id }}<span>/night</span>
+                                    	</div>
+
+                                    <div class="room-reservation-pricebreakdown"><span class="icon-info-sign"></span>view price breakdown</div>
+                                    {% include "hotels/price-breakdown.html" %}
+   							    </div>
+
+                                <!--<input name="day-ids" type="hidden" value="3362,3363,3364,3365,3366,3367,3368,3369">-->
+								<div class="clear"></div>
+							</form>
+                            {% endwith %}
+                        {% endwith %}
+                    {% endfor %}
+
+						</div>
+				</div>
+{% endblock step_right %}
+			<!-- END STEP 2 RESERVATION FORM -->
+
+
+
+		</div>
+
+<!-- END PAGE CONTENT -->
+
+
+{% endblock content %}
+{% block info %}
+{% endblock info %}
+{% block location_info_event %}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+</body>
+</html>

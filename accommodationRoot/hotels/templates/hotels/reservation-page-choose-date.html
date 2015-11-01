@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hotels/reservation-page-base.html" %}
+{% load staticfiles %}
+{% load hotels_extras %}
+<head>
+    {% block title %}
+    {% endblock title %}
+    {% block reservation_widget %}
+    {% endblock reservation_widget %}
+</head>
+<body>
+{% block rev_slider %}
+{% endblock rev_slider %}
+{% block page_header %}
+<!-- BEGIN PAGE TITLE -->
+
+<style>
+</style>
+
+<div id="top-content-divider">
+    <div class="container">
+        <div id="main-title-wrap"> Reservation Page</div>
+    </div>
+</div>
+
+<!-- END PAGE TITLE -->
+
+{% endblock page_header %}
+{% block content %}
+
+		<!-- BEGIN PAGE CONTENT -->
+		<div class="container reservation-page-main-wrap">
+{% block reservation_stages %}
+    {{ block.super }}
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $("#reservation-breadcrumb-wrap").children().removeAttr('id');
+                $("#reservation-breadcrumb-wrap").children('div:nth-child(1)').attr('id','active')
+
+            })
+        })(jQuery);
+    </script>
+{% endblock reservation_stages %}
+
+
+{% block step_left %}
+                <!-- BEGIN STEP 2 RESERVATION FORM -->
+								<!-- BEGIN STEP 1 RESERVATION FORM -->
+			<form method="POST" id="reservation-step1-form" action="{% url 'hotels:choose_room_page' %}">
+                {% csrf_token %}
+				<div class="five columns step1 alpha">
+					<div id="reservation-info">
+						<div id="reservation-info-header"><span class="icon-shopping-cart"></span>Your Booking</div>
+
+                            <div id="reservation-info-content">
+                                <div id="reservation-check-in">
+                                    <div>Check-in</div>
+                                    <input type="text" placeholder="check-in-date" id="check-in-date" name="check-in" class="reservation-form-field" readonly="true">
+                                </div>
+                                <div id="reservation-check-out">
+                                    <div>Check-out</div>
+                                    <input type="text" placeholder="check-out-date" id="check-out-date" name="check-out" class="reservation-form-field" readonly="true">
+                                </div>
+                                <div class="clear"></div>
+
+
+                                <div id="room-guest1" >
+								<div class="reservation-room-adults" name="adults-number">
+                                    <div>Adults</div>						<select name="adults">
+																				<option value="1">1</option>
+																				<option value="2">2</option>
+																				<option value="3">3</option>
+																				<option value="4">4</option>
+																				<option value="5">5</option>
+																				<option value="6">6</option>
+																				<option value="7">7</option>
+																			</select>
+								</div>
+								<div class="reservation-room-children" name="children-number">
+									<div>Children</div>						<select name="children">
+																				<option value="0">0</option>
+																				<option value="1">1</option>
+																				<option value="2">2</option>
+																				<option value="3">3</option>
+																				<option value="4">4</option>
+																				<option value="5">5</option>
+																				<option value="6">6</option>
+																				<option value="7">7</option>
+																			</select>
+								</div>
+							</div>
+
+                                <div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="eleven columns reservation-content page-left-sidebar">
+					<div id="reservation-data-selection"></div>
+					<input type="hidden" value="" name="Date" id="Date" />
+                    <input type="hidden" value=""  name="dateformat" id="dateformat" />
+                    <script type='text/javascript'>
+                        var inputDateFormat = document.getElementById("dateformat");
+                        inputDateFormat.value = bookingOption.dateformat;
+                    </script>
+                    <button type="submit" id="reservation-step1-button">Check Availability</button>
+				</div>
+
+			</form>
+
+			<!-- END STEP 1 RESERVATION FORM -->
+
+{% endblock step_left %}
+
+{% block step_right %}
+{% endblock step_right %}
+			<!-- END STEP 2 RESERVATION FORM -->
+
+
+
+		</div>
+
+<!-- END PAGE CONTENT -->
+
+
+{% endblock content %}
+{% block info %}
+{% endblock info %}
+{% block location_info_event %}
+{% endblock location_info_event %}
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+</body>
+</html>
