@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from hotels.models import Hotel, Room, Guest, Setting, RoomImage, ImageLayer
 from django.db.models import Q
 
+import pickle
+
 from datetime import datetime, timedelta, date
 # import subprocess
 import paypalrestsdk
@@ -400,6 +402,9 @@ def checkout(request, room_id):
 
     print("total_price_per_room " + str(int(total_price_per_room)))
     total_price_for_room[room.pk] = "{0:.2f}".format(round(total_price_per_room * 100) / 100)
+    dumps = pickle.dumps(total_price_for_room)
+    request.session['total_price_for_room'] = dumps
+    print 'Dumping: ', dumps
     context['total_price_for_room'] = total_price_for_room
     context['nights_rates_breakdown'] = nights_rates_breakdown
     return render(request, 'hotels/reservation-page-checkout.html', context)
@@ -460,8 +465,8 @@ def payment_paypal(request, room_id):
     # the above types and intent as 'sale'
     payment = paypalrestsdk.Payment({"intent": "sale",
                                     "redirect_urls": {
-                                        "return_url": "http://192.168.1.6:8000" + reverse('hotels:confirmation', args=(room_id,)),
-                                        "cancel_url": "http://192.168.1.6:8000/hotels/2/checkout/"
+                                        "return_url": "http://192.168.1.232:8000" + reverse('hotels:confirmation', args=(room_id,)),
+                                        "cancel_url": "http://192.168.1.232:8000/hotels/2/checkout/"
                                     },
         "payer": {
             "payment_method": "paypal",
@@ -504,7 +509,6 @@ def payment_paypal(request, room_id):
         print("Payment[%s] created successfully" % payment.id)
         # create the guest if it does not exist
         guest_data = {}
-
         guest_data['first_name'] = context['first_name']
         guest_data['last_name'] = context['last_name']
         guest_data['email_address'] = context['email']
@@ -691,4 +695,6 @@ def confirmation(request, room_id):
     nights_rates_breakdown[room.pk] = nights_rates_breakdown_for_room
     context['nights_rates_breakdown'] = nights_rates_breakdown
     context['room'] = room
+    total_price_for_room = pickle.loads(request.session['total_price_for_room'])
+    context['total_price_for_room'] = total_price_for_room
     return render(request, 'hotels/reservation-page-confirmation.html', context)
